@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TROCAR AQUI: confirmar a URL definitiva do sitemap após a publicação
+Sitemap: https://www.yasmimpinho.com.br/sitemap.xml
