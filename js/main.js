@@ -66,6 +66,14 @@ function inicializarFallbackImagens() {
     img.addEventListener('load', () => {
       img.classList.remove('imagem-indisponivel');
     });
+
+    // O carregamento da imagem começa assim que o HTML é interpretado,
+    // ou seja, pode terminar (e falhar) antes deste script rodar no
+    // DOMContentLoaded — sem esta checagem, o evento "error" já disparado
+    // passaria despercebido e o ícone de imagem quebrada ficaria visível.
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) {
+      img.classList.add('imagem-indisponivel');
+    }
   });
 }
 

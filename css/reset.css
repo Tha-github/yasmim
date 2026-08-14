@@ -17,12 +17,18 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  /* Elementos fora do fluxo normal (menu mobile em translateX quando
+     fechado, formas decorativas absolutas) podem ficar geometricamente
+     fora da viewport e ainda assim criar barra de rolagem horizontal.
+     overflow-x:hidden no html/body é a proteção padrão para isso. */
+  overflow-x: hidden;
 }
 
 img,
