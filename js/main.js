@@ -56,7 +56,7 @@ function inicializarLinksWhatsApp() {
  */
 function inicializarFallbackImagens() {
   const imagensPlaceholder = document.querySelectorAll(
-    '.cabecalho__logo-img, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto'
+    '.cabecalho__logo-img, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto, .card__icone'
   );
 
   imagensPlaceholder.forEach((img) => {
@@ -109,7 +109,10 @@ function inicializarHeaderScroll() {
 
 /**
  * Controla o menu mobile (drawer): abrir/fechar pelo hambúrguer, overlay,
- * tecla Esc e clique em qualquer link; trava o scroll do body enquanto aberto.
+ * tecla Esc, clique em qualquer link ou Tab saindo dos limites do drawer
+ * (focus trap). Trava o scroll do body compensando a posição de rolagem
+ * (para a página não pular ao fechar) e devolve o foco ao botão hambúrguer
+ * ao fechar.
  */
 function inicializarMenuMobile() {
   const botaoMenu = document.getElementById('botao-menu');
@@ -118,12 +121,29 @@ function inicializarMenuMobile() {
 
   if (!botaoMenu || !nav || !overlay) return;
 
+  let scrollYAoAbrir = 0;
+
+  const travarScroll = () => {
+    scrollYAoAbrir = window.scrollY;
+    document.body.style.top = `-${scrollYAoAbrir}px`;
+    document.body.classList.add('menu-aberto');
+  };
+
+  const destravarScroll = () => {
+    document.body.classList.remove('menu-aberto');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollYAoAbrir);
+  };
+
   const abrirMenu = () => {
     nav.classList.add('aberto');
     overlay.classList.add('ativo');
     botaoMenu.setAttribute('aria-expanded', 'true');
     botaoMenu.setAttribute('aria-label', 'Fechar menu de navegação');
-    document.body.classList.add('menu-aberto');
+    travarScroll();
+
+    const primeiroLink = nav.querySelector('a');
+    if (primeiroLink) primeiroLink.focus();
   };
 
   const fecharMenu = () => {
@@ -131,7 +151,8 @@ function inicializarMenuMobile() {
     overlay.classList.remove('ativo');
     botaoMenu.setAttribute('aria-expanded', 'false');
     botaoMenu.setAttribute('aria-label', 'Abrir menu de navegação');
-    document.body.classList.remove('menu-aberto');
+    destravarScroll();
+    botaoMenu.focus();
   };
 
   botaoMenu.addEventListener('click', () => {
@@ -146,8 +167,29 @@ function inicializarMenuMobile() {
   });
 
   document.addEventListener('keydown', (evento) => {
-    if (evento.key === 'Escape' && botaoMenu.getAttribute('aria-expanded') === 'true') {
+    if (botaoMenu.getAttribute('aria-expanded') !== 'true') return;
+
+    if (evento.key === 'Escape') {
       fecharMenu();
+      return;
+    }
+
+    // Focus trap simples: Tab no último link volta ao primeiro, e
+    // Shift+Tab no primeiro vai para o último, sem deixar o foco escapar
+    // para o conteúdo por trás do drawer.
+    if (evento.key === 'Tab') {
+      const links = Array.from(nav.querySelectorAll('a'));
+      if (links.length === 0) return;
+      const primeiro = links[0];
+      const ultimo = links[links.length - 1];
+
+      if (evento.shiftKey && document.activeElement === primeiro) {
+        evento.preventDefault();
+        ultimo.focus();
+      } else if (!evento.shiftKey && document.activeElement === ultimo) {
+        evento.preventDefault();
+        primeiro.focus();
+      }
     }
   });
 }

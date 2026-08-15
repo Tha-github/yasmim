@@ -194,11 +194,6 @@
   <main id="conteudo-principal" tabindex="-1">
     <!-- 2. Hero -->
     <section class="hero section" id="hero">
-      <!-- Forma orgânica decorativa de fundo -->
-      <svg class="hero__blob" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-        <path d="M451,314Q437,378,378,411Q319,444,256,423Q193,402,151,353Q109,304,127,241Q145,178,199,140Q253,102,314,124Q375,146,413,196Q451,246,451,314Z"></path>
-      </svg>
-
       <div class="container hero__conteudo">
         <div class="hero__texto">
           <h1 class="hero__titulo">A vida pede muito de você. Reserve um espaço para cuidar de si.</h1>
@@ -238,19 +233,34 @@
       <div class="container">
         <ul class="faixa-credenciais__lista">
           <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">✓</span>Psicóloga Clínica
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">Psicóloga Clínica</span>
           </li>
           <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">✓</span>CRP 06/162942
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">CRP 06/162942</span>
           </li>
           <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">✓</span>+6 anos de experiência
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">+6 anos de experiência</span>
           </li>
           <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">✓</span>Terapia Cognitivo-Comportamental (TCC)
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">Terapia Cognitivo-Comportamental (TCC)</span>
           </li>
           <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">✓</span>Especialista em Neuropsicologia
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">Especialista em Neuropsicologia</span>
           </li>
         </ul>
       </div>
@@ -264,87 +274,46 @@
           <h2 class="titulo-secao">Talvez a terapia faça sentido para você se…</h2>
         </div>
 
+        <!-- TROCAR AQUI: ícones ilustrativos enviados pela cliente
+             (assets/img/icones/icone-01.png a icone-08.png), na ordem dos cards. -->
         <div class="identificacao__grid">
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="12" y="8" width="24" height="32" rx="3"></rect>
-                <rect x="18" y="5" width="12" height="6" rx="2"></rect>
-                <line x1="17" y1="20" x2="31" y2="20"></line>
-                <line x1="17" y1="27" x2="31" y2="27"></line>
-                <line x1="17" y1="34" x2="26" y2="34"></line>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-01.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Você sente que está sempre tentando dar conta de tudo.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 6 L38 12 V22 C38 32 32 39 24 42 C16 39 10 32 10 22 V12 Z"></path>
-                <line x1="18" y1="24" x2="30" y2="24"></line>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-02.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Tem dificuldade em dizer "não" e estabelecer limites.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="24" r="12"></circle>
-                <circle cx="30" cy="24" r="12"></circle>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-03.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Está vivendo conflitos nos relacionamentos.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 40C24 40 8 29 8 18C8 12 12.5 8 18 8C21 8 23 9.5 24 12C25 9.5 27 8 30 8C35.5 8 40 12 40 18C40 29 24 40 24 40Z"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-04.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Busca compreender melhor suas emoções.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 40V22"></path>
-                <path d="M24 22C24 14 30 10 38 10C38 18 32 24 24 22Z"></path>
-                <path d="M24 26C24 20 18 17 12 17C12 23 17 28 24 26Z"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-05.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Deseja desenvolver uma relação mais saudável consigo mesmo.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 32a16 16 0 0 1 32 0"></path>
-                <line x1="24" y1="32" x2="32" y2="20"></line>
-                <circle cx="24" cy="32" r="2"></circle>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-06.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Percebe que se cobra mais do que gostaria.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 24 C24 19 28 17 31 20 C34 23 32 28 27 28 C21 28 18 22 22 16 C26 10 34 12 37 18"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-07.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Nota que sua mente não desacelera.</p>
           </article>
 
           <article class="identificacao__card reveal">
-            <span class="identificacao__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="24" cy="24" r="16"></circle>
-                <path d="M30 18l-4 10-10 4 4-10z"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/icone-08.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <p>Pretende investir no seu autoconhecimento.</p>
           </article>
         </div>
@@ -407,101 +376,53 @@
           <h2 class="titulo-secao">Atendimentos voltados para</h2>
         </div>
 
+        <!-- TROCAR AQUI: ícones ilustrativos enviados pela cliente
+             (assets/img/icones/tema-01.png a tema-08.png), na ordem dos temas. -->
         <div class="ajuda__grid">
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 26h7l4-11 6 22 4-16 4 5h11"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-01.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Ansiedade</h3>
             <p class="ajuda__apoio">Cuidar da ansiedade no seu próprio ritmo.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 6l5 12 13 1-10 9 3 13-11-7-11 7 3-13-10-9 13-1z"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-02.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Autoestima</h3>
             <p class="ajuda__apoio">Fortalecer a relação que você tem consigo mesmo.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M24 6a12 12 0 0 0-7 22c1 1.5 2 3.5 2 5.5h10c0-2 1-4 2-5.5a12 12 0 0 0-7-22z"></path>
-                <line x1="19" y1="38" x2="29" y2="38"></line>
-                <line x1="20" y1="42" x2="28" y2="42"></line>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-03.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Autoconhecimento</h3>
             <p class="ajuda__apoio">Um espaço para se conhecer com mais profundidade.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="16" cy="15" r="6"></circle>
-                <path d="M6 40c0-8 6-14 10-14s10 6 10 14"></path>
-                <circle cx="33" cy="15" r="6"></circle>
-                <path d="M23 40c0-8 6-14 10-14s10 6 10 14"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-04.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Relacionamentos</h3>
             <p class="ajuda__apoio">Refletir sobre os vínculos que fazem parte da sua vida.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 34l10-10 8 8 14-16"></path>
-                <path d="M32 12h8v8"></path>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-05.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Desenvolvimento emocional</h3>
             <p class="ajuda__apoio">Ampliar recursos para lidar com as emoções.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="10" y1="10" x2="10" y2="38"></line>
-                <line x1="38" y1="10" x2="38" y2="38"></line>
-                <rect x="6" y="22" width="36" height="4" rx="2" transform="rotate(-15 24 24)"></rect>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-06.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Dificuldade em estabelecer limites</h3>
             <p class="ajuda__apoio">Encontrar espaço para dizer "não" quando for preciso.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="10" y="16" width="24" height="16" rx="3"></rect>
-                <rect x="34" y="21" width="4" height="6" rx="1"></rect>
-                <rect x="13" y="19" width="6" height="10" rx="1"></rect>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-07.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Estresse e sobrecarga</h3>
             <p class="ajuda__apoio">Um momento para desacelerar e respirar.</p>
           </article>
 
           <article class="ajuda__card reveal">
-            <span class="ajuda__icone" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="24" cy="22" r="8"></circle>
-                <line x1="24" y1="6" x2="24" y2="10"></line>
-                <line x1="24" y1="34" x2="24" y2="38"></line>
-                <line x1="8" y1="22" x2="12" y2="22"></line>
-                <line x1="36" y1="22" x2="40" y2="22"></line>
-                <line x1="13" y1="11" x2="16" y2="14"></line>
-                <line x1="32" y1="30" x2="35" y2="33"></line>
-                <line x1="35" y1="11" x2="32" y2="14"></line>
-                <line x1="16" y1="30" x2="13" y2="33"></line>
-              </svg>
-            </span>
+            <img src="assets/img/icones/tema-08.png" alt="" width="56" height="56" loading="lazy" class="card__icone">
             <h3 class="ajuda__titulo">Qualidade de vida</h3>
             <p class="ajuda__apoio">Cuidar de si como parte da rotina.</p>
           </article>
@@ -532,6 +453,11 @@
               <li>Frequência semanal, ajustada conforme sua necessidade</li>
               <li>Atendimento particular, com documentação para reembolso</li>
             </ul>
+            <a
+              href="#"
+              class="btn atendimento__botao js-whatsapp-cta"
+              data-mensagem="Olá, Yasmim! Gostaria de agendar um atendimento presencial em Santo André."
+            >Atendimento presencial</a>
           </article>
 
           <article class="atendimento__card reveal">
@@ -548,15 +474,12 @@
               <li>Frequência semanal, ajustada conforme sua necessidade</li>
               <li>Atendimento particular, com documentação para reembolso</li>
             </ul>
+            <a
+              href="#"
+              class="btn atendimento__botao js-whatsapp-cta"
+              data-mensagem="Olá, Yasmim! Gostaria de agendar um atendimento online."
+            >Atendimento online</a>
           </article>
-        </div>
-
-        <div class="atendimento__cta reveal">
-          <a
-            href="#"
-            class="btn js-whatsapp-cta"
-            data-mensagem="Olá! Vamos iniciar agora? Gostaria de agendar uma sessão."
-          >Vamos iniciar agora</a>
         </div>
       </div>
     </section>
@@ -957,21 +880,24 @@
               <p class="contato__aviso">Seus dados são usados apenas para este contato. O atendimento segue o sigilo profissional.</p>
             </form>
           </div>
-        </div>
 
-        <div class="contato__mapa reveal">
-          <!-- TROCAR AQUI: assim que a cliente confirmar o endereço completo,
+          <!-- No mobile, o mapa fica empilhado depois do formulário. No
+               desktop, o CSS o reposiciona (grid-row/grid-column) de volta
+               para abaixo do texto de contato, ao lado do formulário.
+               TROCAR AQUI: assim que a cliente confirmar o endereço completo,
                gerar o embed oficial em Google Maps > Compartilhar > Incorporar
                um mapa, e substituir o src abaixo pelo trecho fornecido (com
                pb=...). Link enviado pela cliente, para conferência manual:
                https://maps.app.goo.gl/Ywut3vT8o9KjeAsJ8 -->
-          <iframe
-            class="contato__mapa-iframe"
-            src="https://www.google.com/maps?q=Consult%C3%B3rio+Yasmim+dos+Santos+Pinho%2C+Santo+Andr%C3%A9%2C+SP&output=embed"
-            loading="lazy"
-            title="Localização do consultório de Yasmim dos Santos Pinho em Santo André (SP)"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <div class="contato__mapa reveal">
+            <iframe
+              class="contato__mapa-iframe"
+              src="https://www.google.com/maps?q=Consult%C3%B3rio+Yasmim+dos+Santos+Pinho%2C+Santo+Andr%C3%A9%2C+SP&output=embed"
+              loading="lazy"
+              title="Localização do consultório de Yasmim dos Santos Pinho em Santo André (SP)"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -996,59 +922,16 @@
   <!-- 13. Rodapé -->
   <footer class="rodape" id="rodape">
     <div class="container rodape__conteudo">
-      <div class="rodape__identidade">
-        <span class="rodape__nome">Yasmim dos Santos Pinho</span>
-        <span class="rodape__crp">Psicóloga Clínica · CRP 06/162942</span>
-      </div>
-
-      <nav class="rodape__nav" aria-label="Navegação do rodapé">
-        <ul>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#ajuda">Como posso ajudar</a></li>
-          <li><a href="#atendimento">Atendimento</a></li>
-          <li><a href="#consultorio">Consultório</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-
-      <div class="rodape__contato">
-        <a
-          href="https://www.instagram.com/psi.yasmimpinho"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rodape__icone-link"
-          aria-label="Abrir o Instagram de Yasmim dos Santos Pinho (abre em nova aba)"
-        >
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6" y="6" width="20" height="20" rx="6"></rect>
-            <circle cx="16" cy="16" r="5"></circle>
-            <circle cx="22" cy="10" r="1" fill="currentColor" stroke="none"></circle>
-          </svg>
-        </a>
-        <a
-          href="#"
-          class="rodape__icone-link js-whatsapp-cta"
-          data-mensagem="Olá! Gostaria de tirar uma dúvida."
-          aria-label="Conversar com Yasmim dos Santos Pinho no WhatsApp (abre em nova aba)"
-        >
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 24l1.8-5.4A10 10 0 1 1 15 23.6L9 24Z"></path>
-            <path d="M11.5 13c0-.6.4-1 1-1h1c.3 0 .6.2.7.5l.7 1.7c.1.3 0 .6-.2.8l-.8.8c.5 1.2 1.6 2.3 2.8 2.8l.8-.8c.2-.2.5-.3.8-.2l1.7.7c.3.1.5.4.5.7v1c0 .6-.4 1-1 1-4.4 0-8-3.6-8-8Z" fill="currentColor" stroke="none"></path>
-          </svg>
-        </a>
-      </div>
-
-      <p class="rodape__endereco">
-        <!-- TROCAR AQUI: endereço completo do consultório (pendente com a cliente) -->
-        Consultório em Santo André (SP) — endereço a confirmar
-      </p>
+      <p class="rodape__nome">Yasmim dos Santos Pinho</p>
+      <p class="rodape__crp">Psicóloga Clínica · CRP 06/162942</p>
     </div>
 
     <div class="rodape__barra">
       <div class="container rodape__barra-conteudo">
-        <p>&copy; <span id="ano-atual"></span> Yasmim dos Santos Pinho. Todos os direitos reservados.</p>
-        <p class="rodape__credito"><!-- TROCAR AQUI: crédito de desenvolvimento (nome/agência), se aplicável --></p>
+        <!-- Quando a Top Site tiver site ou Instagram definitivo, trocar o
+             texto "Top Site" abaixo por:
+             <a href="https://URL-DA-TOP-SITE" target="_blank" rel="noopener noreferrer">Top Site</a> -->
+        <p>&copy; <span id="ano-atual"></span> · Site criado por Top Site</p>
       </div>
     </div>
   </footer>
