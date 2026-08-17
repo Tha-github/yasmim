@@ -56,7 +56,7 @@ function inicializarLinksWhatsApp() {
  */
 function inicializarFallbackImagens() {
   const imagensPlaceholder = document.querySelectorAll(
-    '.cabecalho__logo-img, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto, .card__icone'
+    '.cabecalho__logo-img, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto'
   );
 
   imagensPlaceholder.forEach((img) => {
