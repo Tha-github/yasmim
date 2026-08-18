@@ -1302,27 +1302,20 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     margin-inline: auto;
   }
 
+  /* Bloco de cada item centralizado no card, mas com texto alinhado à
+     esquerda (recuo do parágrafo) — assim o ponto fica preso à primeira
+     linha do texto mesmo em itens que quebram em 2 linhas */
   .atendimento__lista {
     align-items: center;
-  }
-
-  /* Ponto + texto centralizados como um par na mesma linha */
-  .atendimento__lista li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--esp-8);
-    padding-left: 0;
+    text-align: left;
   }
 
   .atendimento__lista li::before {
     content: '';
-    position: static;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background-color: var(--terracota);
-    flex-shrink: 0;
   }
 
   .atendimento__botao {
