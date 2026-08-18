@@ -56,7 +56,7 @@ function inicializarLinksWhatsApp() {
  */
 function inicializarFallbackImagens() {
   const imagensPlaceholder = document.querySelectorAll(
-    '.cabecalho__logo-img, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto'
+    '.cabecalho__logo-img, .rodape__logo, .hero__foto, .sobre__foto, .consultorio__foto, .lightbox__foto, .instagram__foto'
   );
 
   imagensPlaceholder.forEach((img) => {
@@ -260,42 +260,151 @@ function inicializarAnimacaoEntrada() {
 }
 
 /**
- * Lightbox da galeria do consultório: abre a foto em destaque ao clicar
- * em uma miniatura, navega entre as fotos (botões ou setas do teclado),
- * fecha com X, clique no overlay ou tecla Esc, trava o scroll do body
- * enquanto está aberto e devolve o foco à miniatura que abriu o lightbox.
+ * Carrossel do consultório: foto central em destaque, com as vizinhas
+ * visíveis pela metade nas laterais (efeito "coverflow"). Navega por
+ * setas, swipe no toque e teclado (setas do teclado com o carrossel
+ * focado), com bullets indicando a posição e loop infinito. Clicar na
+ * foto central abre o lightbox (mesma navegação, agora entre todas as
+ * fotos); clicar numa foto lateral parcial só traz ela para o centro.
+ * Aceita de 4 a 6 fotos — o número de itens no HTML já define tudo.
  */
-function inicializarGaleriaConsultorio() {
-  const galeria = document.getElementById('galeria-consultorio');
+function inicializarCarrosselConsultorio() {
+  const carrossel = document.getElementById('carrossel-consultorio');
+  const trilha = document.getElementById('consultorio-trilha');
   const lightbox = document.getElementById('lightbox');
 
-  if (!galeria || !lightbox) return;
+  if (!carrossel || !trilha || !lightbox) return;
 
-  const itens = Array.from(galeria.querySelectorAll('.consultorio__item'));
+  const itens = Array.from(trilha.querySelectorAll('.consultorio__item'));
+  const botaoAnteriorCarrossel = document.getElementById('consultorio-seta-anterior');
+  const botaoProximoCarrossel = document.getElementById('consultorio-seta-proxima');
+  const containerBullets = document.getElementById('consultorio-bullets');
+
   const fotoLightbox = document.getElementById('lightbox-foto');
-  const legendaLightbox = document.getElementById('lightbox-legenda');
-  const botaoAnterior = document.getElementById('lightbox-anterior');
-  const botaoProximo = document.getElementById('lightbox-proximo');
+  const botaoAnteriorLightbox = document.getElementById('lightbox-anterior');
+  const botaoProximoLightbox = document.getElementById('lightbox-proximo');
 
-  if (itens.length === 0 || !fotoLightbox || !legendaLightbox || !botaoAnterior || !botaoProximo) return;
+  if (
+    itens.length === 0 ||
+    !botaoAnteriorCarrossel || !botaoProximoCarrossel || !containerBullets ||
+    !fotoLightbox || !botaoAnteriorLightbox || !botaoProximoLightbox
+  ) return;
 
   const fotos = itens.map((item) => {
     const img = item.querySelector('img');
     return { src: img.getAttribute('src'), alt: img.getAttribute('alt'), legenda: item.dataset.legenda };
   });
 
-  let indiceAtual = 0;
+  const total = fotos.length;
+  let indiceCarrossel = 0;
+
+  // --- Carrossel ---
+
+  const bullets = fotos.map((foto, indice) => {
+    const bullet = document.createElement('button');
+    bullet.type = 'button';
+    bullet.className = 'consultorio__bullet';
+    bullet.setAttribute('aria-label', `Foto ${indice + 1} de ${total}: ${foto.legenda}`);
+    bullet.addEventListener('click', () => irParaIndice(indice));
+    containerBullets.appendChild(bullet);
+    return bullet;
+  });
+
+  function atualizarCarrossel() {
+    itens.forEach((item, indice) => {
+      // Distância circular até o índice atual: 0 = central, 1 = próxima
+      // (direita), total-1 = anterior (esquerda), o resto fica oculto.
+      const distancia = (indice - indiceCarrossel + total) % total;
+      let estado = 'oculto';
+      if (distancia === 0) estado = 'ativo';
+      else if (distancia === 1) estado = 'proxima';
+      else if (distancia === total - 1) estado = 'anterior';
+      item.dataset.estado = estado;
+      item.setAttribute('aria-hidden', estado === 'ativo' ? 'false' : 'true');
+      item.tabIndex = estado === 'ativo' ? 0 : -1;
+    });
+
+    bullets.forEach((bullet, indice) => {
+      bullet.setAttribute('aria-current', String(indice === indiceCarrossel));
+    });
+  }
+
+  function irParaIndice(indice) {
+    indiceCarrossel = ((indice % total) + total) % total;
+    atualizarCarrossel();
+  }
+
+  function irParaAnteriorCarrossel() {
+    irParaIndice(indiceCarrossel - 1);
+  }
+
+  function irParaProximaCarrossel() {
+    irParaIndice(indiceCarrossel + 1);
+  }
+
+  botaoAnteriorCarrossel.addEventListener('click', irParaAnteriorCarrossel);
+  botaoProximoCarrossel.addEventListener('click', irParaProximaCarrossel);
+
+  itens.forEach((item, indice) => {
+    item.addEventListener('click', () => {
+      const distancia = (indice - indiceCarrossel + total) % total;
+      if (distancia === 0) {
+        abrirLightbox(indice, item);
+      } else {
+        irParaIndice(indice);
+      }
+    });
+  });
+
+  carrossel.addEventListener('keydown', (evento) => {
+    if (evento.key === 'ArrowLeft') {
+      evento.preventDefault();
+      irParaAnteriorCarrossel();
+    } else if (evento.key === 'ArrowRight') {
+      evento.preventDefault();
+      irParaProximaCarrossel();
+    }
+  });
+
+  // Swipe no toque: só decide a direção quando o arrasto horizontal supera
+  // um limiar mínimo, evitando trocar de foto sem querer durante o scroll
+  // vertical da página.
+  const LIMIAR_SWIPE = 40;
+  let inicioX = null;
+  let inicioY = null;
+
+  trilha.addEventListener('touchstart', (evento) => {
+    inicioX = evento.touches[0].clientX;
+    inicioY = evento.touches[0].clientY;
+  }, { passive: true });
+
+  trilha.addEventListener('touchend', (evento) => {
+    if (inicioX === null) return;
+    const deltaX = evento.changedTouches[0].clientX - inicioX;
+    const deltaY = evento.changedTouches[0].clientY - inicioY;
+    inicioX = null;
+    inicioY = null;
+
+    if (Math.abs(deltaX) < LIMIAR_SWIPE || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (deltaX < 0) irParaProximaCarrossel();
+    else irParaAnteriorCarrossel();
+  });
+
+  atualizarCarrossel();
+
+  // --- Lightbox (mesmas fotos, navegação independente do carrossel) ---
+
+  let indiceLightbox = 0;
   let elementoOrigem = null;
 
   const atualizarFotoExibida = () => {
-    const foto = fotos[indiceAtual];
+    const foto = fotos[indiceLightbox];
     fotoLightbox.src = foto.src;
     fotoLightbox.alt = foto.alt;
-    legendaLightbox.textContent = foto.legenda;
   };
 
   const abrirLightbox = (indice, origem) => {
-    indiceAtual = indice;
+    indiceLightbox = indice;
     elementoOrigem = origem;
     atualizarFotoExibida();
     lightbox.classList.add('lightbox--aberto');
@@ -308,33 +417,29 @@ function inicializarGaleriaConsultorio() {
     if (elementoOrigem) elementoOrigem.focus();
   };
 
-  const irParaAnterior = () => {
-    indiceAtual = (indiceAtual - 1 + fotos.length) % fotos.length;
+  const irParaAnteriorLightbox = () => {
+    indiceLightbox = (indiceLightbox - 1 + total) % total;
     atualizarFotoExibida();
   };
 
-  const irParaProxima = () => {
-    indiceAtual = (indiceAtual + 1) % fotos.length;
+  const irParaProximaLightbox = () => {
+    indiceLightbox = (indiceLightbox + 1) % total;
     atualizarFotoExibida();
   };
-
-  itens.forEach((item, indice) => {
-    item.addEventListener('click', () => abrirLightbox(indice, item));
-  });
 
   lightbox.querySelectorAll('[data-lightbox-fechar]').forEach((elemento) => {
     elemento.addEventListener('click', fecharLightbox);
   });
 
-  botaoAnterior.addEventListener('click', irParaAnterior);
-  botaoProximo.addEventListener('click', irParaProxima);
+  botaoAnteriorLightbox.addEventListener('click', irParaAnteriorLightbox);
+  botaoProximoLightbox.addEventListener('click', irParaProximaLightbox);
 
   document.addEventListener('keydown', (evento) => {
     if (!lightbox.classList.contains('lightbox--aberto')) return;
 
     if (evento.key === 'Escape') fecharLightbox();
-    if (evento.key === 'ArrowLeft') irParaAnterior();
-    if (evento.key === 'ArrowRight') irParaProxima();
+    if (evento.key === 'ArrowLeft') irParaAnteriorLightbox();
+    if (evento.key === 'ArrowRight') irParaProximaLightbox();
   });
 }
 
@@ -546,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
   inicializarMenuMobile();
   inicializarScrollSpy();
   inicializarAnimacaoEntrada();
-  inicializarGaleriaConsultorio();
+  inicializarCarrosselConsultorio();
   inicializarFAQ();
   inicializarFormularioContato();
   inicializarBotaoFlutuante();

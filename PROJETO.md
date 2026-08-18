@@ -117,27 +117,33 @@ A cliente pediu de 3 a 4 CTAs distribuídos ao longo da página.
 
 ### Paleta
 
+Extraída das artes da cliente (Instagram/Canva).
+
 | Token | Uso | Hex |
 |---|---|---|
-| `--areia` | Fundo alternado de seções | `#F7F1E9` |
-| `--nude` | Blocos, cards, detalhes | `#E9D9C6` |
-| `--nude-escuro` | Bordas e divisores | `#D8C3AA` |
-| `--marrom` | Títulos e elementos de destaque | `#6B4A32` |
-| `--marrom-escuro` | Texto principal (substitui o preto) | `#33241A` |
-| `--marrom-suave` | Texto secundário | `#7A6656` |
-| `--terracota` | Cor dos botões e CTAs | `#C25E28` |
-| `--terracota-hover` | Estado hover dos botões | `#A44D1F` |
-| `--laranja-suave` | Ícones, grifos, detalhes | `#E8A87C` |
-| `--branco` | Fundo base | `#FFFFFF` |
+| `--creme` | Fundo base do site | `#FDF7EC` |
+| `--areia` | Fundo alternado de seções | `#F7EBD8` |
+| `--bege-rosado` | Fundo de seções de destaque, cards | `#FAEEE4` |
+| `--mostarda` | Blocos de destaque, faixas, detalhes | `#E3C57F` |
+| `--mostarda-escuro` | Bordas, divisores, hover de detalhes | `#C9A85C` |
+| `--terracota` | Botões e CTAs | `#A85426` |
+| `--terracota-hover` | Hover dos botões | `#8C4220` |
+| `--marrom` | Títulos | `#7A4A24` |
+| `--marrom-escuro` | Texto principal (substitui o preto) | `#4A2E18` |
+| `--marrom-suave` | Texto secundário (corpo de texto) | `#82644A` |
+| `--branco` | Fundo de cards e contraste | `#FFFFFF` |
+
+> `--marrom-suave` foi ajustado de `#8A6A4F` (hex original das artes) para
+> `#82644A` — o original ficava em 4,19:1 sobre `--areia`, abaixo do AA
+> (4.5:1) para texto normal. Mesma tonalidade, um pouco mais escura.
 
 ### Regras de cor
 
-- **Não usar preto puro** (`#000`). A cliente pediu para evitar. Todo texto
-  escuro usa `--marrom-escuro`.
-- **Não usar laranja claro como cor de texto** sobre fundo claro: não passa
-  em contraste. Laranja claro só em ícones, detalhes e fundos.
-- Botões: fundo `--terracota` com texto branco (contraste aprovado em AA).
-- Alternar fundos: branco → areia → branco → nude, para dar ritmo à página.
+- Fundo do site aprovado — não alterar.
+- **Mostarda nunca como cor de texto** sobre fundo claro: não passa em
+  contraste. Só em fundos, faixas, ícones grandes e detalhes.
+- Botões: fundo `--terracota` com texto branco.
+- Nada de preto puro (`#000`).
 
 ### Tipografia
 
@@ -164,7 +170,7 @@ animações de fade e slide sutis ao rolar. Sem elementos duros ou corporativos.
 - https://pacote-lp-01.lovable.app/?preview=template&slug=psicologia_lavanda
 
 Usar como referência de **estrutura, ritmo e tom**. Não copiar textos,
-layout ou paleta — a identidade da Yasmim é própria (nude, marrom, laranja).
+layout ou paleta — a identidade da Yasmim é própria (creme, mostarda, terracota).
 
 ## 10. Estrutura de seções
 

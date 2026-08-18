@@ -62,17 +62,17 @@
   <meta name="twitter:description" content="Psicóloga clínica em Santo André/SP e online para todo o Brasil. Terapia Cognitivo-Comportamental (TCC) · CRP 06/162942.">
   <meta name="twitter:image" content="https://www.yasmimpinho.com.br/assets/img/og-image.jpg">
 
-  <!-- Favicon: SVG funciona hoje em todos os navegadores modernos e se
-       adapta a qualquer tamanho. TROCAR AQUI quando houver o logotipo
-       definitivo: gerar o conjunto de PNGs (ex.: via realfavicongenerator.net)
-       e acrescentar os links tradicionais (32x32, 16x16, apple-touch-icon). -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="assets/favicon.svg">
+  <!-- Favicon definitivo (gerado a partir do logotipo, via realfavicongenerator.net) -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
 
-  <!-- Preconnect + Google Fonts (Lora e Inter) -->
+  <!-- Preconnect + Google Fonts (Cormorant Garamond e Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Folhas de estilo -->
   <link rel="stylesheet" href="css/reset.css">
@@ -143,22 +143,32 @@
   <!-- 1. Header fixo com navegação por âncoras -->
   <header class="cabecalho" id="cabecalho">
     <div class="container cabecalho__conteudo">
-      <a href="#" class="cabecalho__logo" aria-label="Yasmim dos Santos Pinho — Psicóloga, voltar ao topo">
-        <img
-          src="assets/logo.svg"
-          alt="Yasmim dos Santos Pinho — Psicóloga"
-          class="cabecalho__logo-img"
-          width="44"
-          height="44"
-        >
-        <!-- Enquanto não houver logo definitivo, o nome serve de identificação visual -->
-        <span class="cabecalho__logo-texto">
-          <span class="cabecalho__nome">Yasmim dos Santos Pinho</span>
-          <span class="cabecalho__crp">Psicóloga · CRP 06/162942</span>
+      <a href="#inicio" class="cabecalho__logo" aria-label="Yasmim dos Santos Pinho — Psicóloga, voltar ao topo">
+        <span class="cabecalho__logo-moldura">
+          <img
+            src="assets/logo.png"
+            alt="Yasmim dos Santos Pinho — Psicóloga"
+            class="cabecalho__logo-img"
+            width="142"
+            height="200"
+          >
+          <span class="placeholder-imagem">Logo</span>
         </span>
       </a>
 
       <nav class="cabecalho__nav" id="nav-principal" aria-label="Navegação principal">
+        <a href="#inicio" class="cabecalho__nav-logo" aria-label="Yasmim dos Santos Pinho — Psicóloga, voltar ao topo">
+          <span class="cabecalho__logo-moldura">
+            <img
+              src="assets/logo.png"
+              alt="Yasmim dos Santos Pinho — Psicóloga"
+              class="cabecalho__logo-img"
+              width="142"
+              height="200"
+            >
+            <span class="placeholder-imagem">Logo</span>
+          </span>
+        </a>
         <ul class="cabecalho__lista">
           <li><a href="#sobre" class="cabecalho__link">Sobre</a></li>
           <li><a href="#ajuda" class="cabecalho__link">Como posso ajudar</a></li>
@@ -193,15 +203,14 @@
 
   <main id="conteudo-principal" tabindex="-1">
     <!-- 2. Hero -->
-    <section class="hero section" id="hero">
+    <section class="hero section" id="inicio">
       <div class="container hero__conteudo">
-        <h1 class="hero__titulo">A vida pede muito de você. Reserve um espaço para cuidar de si.</h1>
+        <h1 class="hero__titulo">A vida pede muito de você.<br>Reserve um espaço para <em class="destaque">cuidar de si</em>.</h1>
 
         <div class="hero__imagem">
           <div class="hero__moldura" aria-hidden="true"></div>
           <div class="hero__foto-moldura">
-            <!-- Foto placeholder: aguardando fotos profissionais da cliente.
-                 loading="eager" propositalmente (imagem acima da dobra). -->
+            <!-- loading="eager" propositalmente (imagem acima da dobra). -->
             <img
               src="assets/img/yasmim.jpg"
               alt="Yasmim dos Santos Pinho, psicóloga clínica"
@@ -244,12 +253,6 @@
             <span class="faixa-credenciais__check" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
             </span>
-            <span class="faixa-credenciais__texto">CRP 06/162942</span>
-          </li>
-          <li class="faixa-credenciais__item">
-            <span class="faixa-credenciais__check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
-            </span>
             <span class="faixa-credenciais__texto">+6 anos de experiência</span>
           </li>
           <li class="faixa-credenciais__item">
@@ -264,6 +267,15 @@
             </span>
             <span class="faixa-credenciais__texto">Especialista em Neuropsicologia</span>
           </li>
+          <!-- Este 5º item é uma sugestão (preenche a linha final centralizada
+               no mesmo padrão dos outros) — precisa de confirmação da cliente
+               antes de publicar. -->
+          <li class="faixa-credenciais__item">
+            <span class="faixa-credenciais__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 13 9 18 20 6"></polyline></svg>
+            </span>
+            <span class="faixa-credenciais__texto">Atendimento presencial e online</span>
+          </li>
         </ul>
       </div>
     </section>
@@ -273,7 +285,7 @@
       <div class="container">
         <div class="identificacao__cabecalho reveal">
           <span class="olho">Talvez seja a hora</span>
-          <h2 class="titulo-secao">Talvez a terapia faça sentido para você se…</h2>
+          <h2 class="titulo-secao">Talvez a terapia <em class="destaque">faça sentido</em> para você se…</h2>
         </div>
 
         <div class="identificacao__grid">
@@ -358,7 +370,6 @@
         <div class="sobre__imagem reveal">
           <div class="sobre__moldura" aria-hidden="true"></div>
           <div class="sobre__foto-moldura">
-            <!-- Foto placeholder: aguardando fotos profissionais da cliente -->
             <img
               src="assets/img/sobre.jpg"
               alt="Yasmim dos Santos Pinho, psicóloga clínica"
@@ -373,7 +384,7 @@
 
         <div class="sobre__texto reveal">
           <span class="olho">Sobre mim</span>
-          <h2 class="titulo-secao">Quem vai te acompanhar nesse processo</h2>
+          <h2 class="titulo-secao">Quem vai te <em class="destaque">acompanhar</em> nesse processo</h2>
 
           <p>Sou psicóloga clínica e há mais de 6 anos acompanho adultos em seus processos de autoconhecimento e cuidado com a saúde emocional.</p>
           <p>Atuo por meio da Terapia Cognitivo-Comportamental (TCC) e possuo especialização em Neuropsicologia, buscando oferecer um atendimento ético, acolhedor e fundamentado cientificamente.</p>
@@ -395,6 +406,7 @@
           </div>
 
           <p class="sobre__assinatura">Yasmim dos Santos Pinho</p>
+          <p class="sobre__assinatura-crp">CRP 06/162942</p>
         </div>
       </div>
     </section>
@@ -404,7 +416,7 @@
       <div class="container">
         <div class="ajuda__cabecalho reveal">
           <span class="olho">Como posso ajudar?</span>
-          <h2 class="titulo-secao">Atendimentos voltados para</h2>
+          <h2 class="titulo-secao">Atendimentos <em class="destaque">voltados para</em></h2>
         </div>
 
         <div class="ajuda__grid">
@@ -498,11 +510,11 @@
     </section>
 
     <!-- 7. Formas de atendimento (presencial e online) -->
-    <section class="atendimento section section--nude" id="atendimento">
+    <section class="atendimento section section--bege-rosado" id="atendimento">
       <div class="container">
         <div class="atendimento__cabecalho reveal">
           <span class="olho">Formas de atendimento</span>
-          <h2 class="titulo-secao">Presencial ou online, do jeito que fizer sentido para você</h2>
+          <h2 class="titulo-secao">Presencial ou online, <em class="destaque">do jeito que fizer sentido</em> para você</h2>
         </div>
 
         <div class="atendimento__grid">
@@ -556,61 +568,64 @@
       <div class="container">
         <div class="consultorio__cabecalho reveal">
           <span class="olho">Conheça o espaço</span>
-          <h2 class="titulo-secao">Conheça o consultório presencial</h2>
+          <h2 class="titulo-secao">Conheça o <em class="destaque">consultório</em> presencial</h2>
           <p class="consultorio__apoio">Um ambiente pensado para acolher, com privacidade e cuidado em cada detalhe, para que você se sinta à vontade desde a chegada até o início da sessão.</p>
         </div>
 
-        <!-- TROCAR AQUI: substituir os 6 src abaixo pelas fotos reais do
-             consultório (assets/img/consultorio-1.jpg a consultorio-6.jpg).
-             Pode remover itens até deixar no mínimo 4 fotos. -->
-        <div class="consultorio__galeria" id="galeria-consultorio">
-          <button type="button" class="consultorio__item reveal" data-legenda="Sala de espera">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-1.jpg" alt="Sala de espera do consultório" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Sala de espera</span>
+        <!-- Carrossel: foto central em destaque, vizinhas visíveis pela
+             metade nas laterais (controlado em js/main.js). Fotos reais
+             do consultório enviadas pela cliente (assets/img/
+             consultorio-1.jpg em diante). Estrutura aceita de 4 a 6 fotos
+             — basta adicionar/remover itens .consultorio__item. -->
+        <div class="consultorio__carrossel reveal" id="carrossel-consultorio" role="region" aria-roledescription="carrossel" aria-label="Fotos do consultório">
+          <button type="button" class="consultorio__seta consultorio__seta--anterior" id="consultorio-seta-anterior" aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"></path></svg>
           </button>
 
-          <button type="button" class="consultorio__item reveal" data-legenda="Consultório individual">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-2.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Consultório individual</span>
+          <div class="consultorio__viewport">
+            <div class="consultorio__trilha" id="consultorio-trilha">
+              <button type="button" class="consultorio__item" data-legenda="Sala de espera">
+                <span class="consultorio__foto-moldura">
+                  <img src="assets/img/consultorio-1.jpg" alt="Sala de espera do consultório" class="consultorio__foto" loading="lazy" width="400" height="300">
+                  <span class="placeholder-imagem">Sua imagem</span>
+                </span>
+              </button>
+
+              <button type="button" class="consultorio__item" data-legenda="Corredor de acesso ao consultório">
+                <span class="consultorio__foto-moldura">
+                  <img src="assets/img/consultorio-2.jpg" alt="Corredor de acesso ao consultório" class="consultorio__foto" loading="lazy" width="400" height="300">
+                  <span class="placeholder-imagem">Sua imagem</span>
+                </span>
+              </button>
+
+              <button type="button" class="consultorio__item" data-legenda="Consultório individual">
+                <span class="consultorio__foto-moldura">
+                  <img src="assets/img/consultorio-3.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
+                  <span class="placeholder-imagem">Sua imagem</span>
+                </span>
+              </button>
+
+              <button type="button" class="consultorio__item" data-legenda="Consultório individual">
+                <span class="consultorio__foto-moldura">
+                  <img src="assets/img/consultorio-4.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
+                  <span class="placeholder-imagem">Sua imagem</span>
+                </span>
+              </button>
+
+              <button type="button" class="consultorio__item" data-legenda="Consultório individual">
+                <span class="consultorio__foto-moldura">
+                  <img src="assets/img/consultorio-5.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
+                  <span class="placeholder-imagem">Sua imagem</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <button type="button" class="consultorio__seta consultorio__seta--proxima" id="consultorio-seta-proxima" aria-label="Próxima foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"></path></svg>
           </button>
 
-          <button type="button" class="consultorio__item reveal" data-legenda="Sala de espera">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-3.jpg" alt="Sala de espera do consultório" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Sala de espera</span>
-          </button>
-
-          <button type="button" class="consultorio__item reveal" data-legenda="Consultório individual">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-4.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Consultório individual</span>
-          </button>
-
-          <button type="button" class="consultorio__item reveal" data-legenda="Sala de espera">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-5.jpg" alt="Sala de espera do consultório" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Sala de espera</span>
-          </button>
-
-          <button type="button" class="consultorio__item reveal" data-legenda="Consultório individual">
-            <span class="consultorio__foto-moldura">
-              <img src="assets/img/consultorio-6.jpg" alt="Consultório individual" class="consultorio__foto" loading="lazy" width="400" height="300">
-              <span class="placeholder-imagem">Sua imagem</span>
-            </span>
-            <span class="consultorio__legenda">Consultório individual</span>
-          </button>
+          <div class="consultorio__bullets" id="consultorio-bullets"></div>
         </div>
       </div>
 
@@ -627,7 +642,6 @@
             <span class="placeholder-imagem">Sua imagem</span>
           </div>
           <button type="button" class="lightbox__proximo" id="lightbox-proximo" aria-label="Próxima foto">&rsaquo;</button>
-          <p class="lightbox__legenda" id="lightbox-legenda"></p>
         </div>
       </div>
     </section>
@@ -640,8 +654,7 @@
           <h2 class="titulo-secao">Conteúdos sobre saúde emocional para o seu dia a dia</h2>
         </div>
 
-        <!-- TROCAR AQUI: substituir pelos prints/posts reais do perfil
-             (assets/img/instagram-1.jpg a instagram-4.jpg) -->
+        <!-- Prints reais do perfil enviados pela cliente -->
         <div class="instagram__grid">
           <a
             href="https://www.instagram.com/psi.yasmimpinho"
@@ -863,8 +876,8 @@
     <!-- 11. Faixa final "Mudanças importantes começam com uma decisão" → CTA 3 -->
     <section class="decisao" id="decisao">
       <div class="container decisao__conteudo">
-        <h2 class="decisao__frase reveal">Mudanças importantes começam com uma decisão.</h2>
-        <p class="decisao__apoio reveal">Você não precisa ter todas as respostas agora — basta abrir espaço para começar.</p>
+        <h2 class="decisao__frase reveal">Mudanças importantes começam com <em class="destaque">uma decisão</em>.</h2>
+        <p class="decisao__apoio reveal">Você não precisa ter todas as respostas agora, basta abrir espaço para começar.</p>
         <div class="decisao__cta reveal">
           <a
             href="#"
@@ -887,9 +900,9 @@
             <ul class="contato__canais">
               <li>
                 <span class="contato__icone" aria-hidden="true">
-                  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 24l1.8-5.4A10 10 0 1 1 15 23.6L9 24Z"></path>
-                    <path d="M11.5 13c0-.6.4-1 1-1h1c.3 0 .6.2.7.5l.7 1.7c.1.3 0 .6-.2.8l-.8.8c.5 1.2 1.6 2.3 2.8 2.8l.8-.8c.2-.2.5-.3.8-.2l1.7.7c.3.1.5.4.5.7v1c0 .6-.4 1-1 1-4.4 0-8-3.6-8-8Z" fill="currentColor" stroke="none"></path>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a9 9 0 0 0-7.75 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"></path>
+                    <path d="M8.5 8.8c0-.4.3-.8.7-.8h.6c.3 0 .5.2.6.4l.5 1.2c.1.2 0 .5-.2.7l-.5.5c.4.9 1.1 1.6 2 2l.5-.5c.2-.2.4-.2.7-.2l1.2.5c.2.1.4.3.4.6v.6c0 .4-.4.7-.8.7-3.3 0-6-2.7-6-6Z" fill="currentColor" stroke="none"></path>
                   </svg>
                 </span>
                 <a href="#" class="js-whatsapp-cta" data-mensagem="Olá! Gostaria de tirar uma dúvida.">Conversar no WhatsApp</a>
@@ -912,7 +925,7 @@
                   </svg>
                 </span>
                 <!-- TROCAR AQUI: endereço completo do consultório (pendente com a cliente) -->
-                <span>Santo André (SP) — endereço a confirmar</span>
+                <span>Santo André (SP), endereço a confirmar</span>
               </li>
             </ul>
           </div>
@@ -1000,8 +1013,13 @@
   <!-- 13. Rodapé -->
   <footer class="rodape" id="rodape">
     <div class="container rodape__conteudo">
-      <p class="rodape__nome">Yasmim dos Santos Pinho</p>
-      <p class="rodape__crp">Psicóloga Clínica · CRP 06/162942</p>
+      <!-- Versão clara do logo (fundo --marrom-escuro do rodapé). O nome e o
+           CRP já aparecem no próprio logo (imagem) — não há mais texto
+           equivalente aqui; ver aviso sobre acessibilidade/CFP na resposta. -->
+      <span class="rodape__logo-moldura">
+        <img src="assets/logo-rodape.png" alt="Yasmim dos Santos Pinho — Psicóloga, CRP 06/162942" class="rodape__logo" width="142" height="200">
+        <span class="placeholder-imagem">Logo</span>
+      </span>
     </div>
 
     <div class="rodape__barra">
@@ -1009,7 +1027,7 @@
         <!-- Quando a Top Site tiver site ou Instagram definitivo, trocar o
              texto "Top Site" abaixo por:
              <a href="https://URL-DA-TOP-SITE" target="_blank" rel="noopener noreferrer">Top Site</a> -->
-        <p>&copy; <span id="ano-atual"></span> · Site criado por Top Site</p>
+        <p>&copy; <span id="ano-atual"></span> Yasmim Pinho · Todos os direitos reservados · Site criado por Top Site</p>
       </div>
     </div>
   </footer>

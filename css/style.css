@@ -5,15 +5,17 @@
 
 :root {
   /* --- Cores (seção 8 do PROJETO.md) --- */
-  --areia: #F7F1E9;
-  --nude: #E9D9C6;
-  --nude-escuro: #D8C3AA;
-  --marrom: #6B4A32;
-  --marrom-escuro: #33241A; /* usar sempre no lugar de preto puro */
-  --marrom-suave: #7A6656;
-  --terracota: #C25E28;
-  --terracota-hover: #A44D1F;
-  --laranja-suave: #E8A87C;
+  --creme: #FDF7EC;
+  --areia: #F7EBD8;
+  --bege-rosado: #FAEEE4;
+  --mostarda: #E3C57F;
+  --mostarda-escuro: #C9A85C;
+  --marrom: #7A4A24;
+  --marrom-escuro: #4A2E18; /* usar sempre no lugar de preto puro */
+  --marrom-suave: #82644A; /* ajustado de #8A6A4F: original ficava em 4,19:1 sobre
+     --areia (abaixo do AA 4.5:1) — mesma tonalidade, um pouco mais escura */
+  --terracota: #A85426;
+  --terracota-hover: #8C4220;
   --branco: #FFFFFF;
 
   /* Cores funcionais — fora da paleta de marca, necessárias para estados
@@ -22,7 +24,7 @@
   --whatsapp-verde: #25D366;
 
   /* --- Tipografia --- */
-  --fonte-titulo: 'Lora', serif;
+  --fonte-titulo: 'Cormorant Garamond', serif;
   --fonte-corpo: 'Inter', sans-serif;
 
   /* Escala de tamanhos: 14 / 16 / 18 / 20 / 26 / 34 / 46 / 60px */
@@ -51,7 +53,7 @@
 
   /* --- Estilo geral --- */
   --raio-borda: 16px;
-  --sombra-suave: 0 8px 24px rgba(51, 36, 26, 0.08);
+  --sombra-suave: 0 8px 24px rgba(74, 46, 24, 0.08);
   --largura-maxima: 1140px;
 }
 
@@ -67,8 +69,8 @@ html {
 body {
   font-family: var(--fonte-corpo);
   font-size: var(--fs-16);
-  color: var(--marrom-escuro);
-  background-color: var(--branco);
+  color: var(--marrom-suave);
+  background-color: var(--creme);
 }
 
 /* position:fixed + "top" negativo (definido via JS com o scrollY no
@@ -92,29 +94,42 @@ main {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--fonte-titulo);
   color: var(--marrom);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-h1 { font-size: var(--fs-46); }
-h2 { font-size: var(--fs-34); }
-h3 { font-size: var(--fs-26); }
+/* Escala de títulos (item 1.3 da rodada de ajustes): mobile-first, com
+   override em desktop (>=768px) — não duas regras concorrentes para o
+   mesmo alvo. */
+h1 { font-size: clamp(1.875rem, 1.7rem + 0.8vw, 2.125rem); }      /* 30–34px mobile */
+h2 { font-size: clamp(1.5625rem, 1.45rem + 0.5vw, 1.75rem); }     /* 25–28px mobile */
+h3 { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem); }       /* 17–18px mobile */
 h4 { font-size: var(--fs-20); }
 
 @media (min-width: 768px) {
-  h1 { font-size: var(--fs-60); }
+  h1 { font-size: clamp(2.875rem, 2.5rem + 1.2vw, 3.25rem); }     /* 46–52px desktop */
+  h2 { font-size: clamp(2.125rem, 1.9rem + 0.9vw, 2.375rem); }    /* 34–38px desktop */
+  h3 { font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.3125rem); } /* 19–21px desktop */
 }
 
 p {
   font-family: var(--fonte-corpo);
-  line-height: 1.7;
+  line-height: 1.65;
   max-width: 65ch;
-  color: var(--marrom-escuro);
+  color: var(--marrom-suave);
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);   /* 15–16px mobile */
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem); /* 16–17px desktop */
+  }
 }
 
 a {
-  /* terracota puro fica em 4,27:1 sobre fundos claros (abaixo do AA 4.5:1) —
-     usamos o tom mais escuro como cor de repouso dos links de texto simples */
+  /* terracota puro já passa em AA (5,30:1 sobre --branco), mas usamos o tom
+     mais escuro como cor de repouso dos links para reservar contraste ao
+     estado de hover */
   color: var(--terracota-hover);
   transition: color 0.2s ease;
 }
@@ -133,7 +148,7 @@ textarea:focus-visible {
 }
 
 ul, ol {
-  color: var(--marrom-escuro);
+  color: var(--marrom-suave);
 }
 
 /* --------------------------------------------------------------------------
@@ -150,7 +165,7 @@ ul, ol {
   padding: var(--esp-16) var(--esp-24);
   border-radius: 8px;
   box-shadow: var(--sombra-suave);
-  font-weight: 600;
+  font-weight: 500;
   transition: top 0.2s ease;
 }
 
@@ -189,8 +204,8 @@ main:focus-visible {
   background-color: var(--areia);
 }
 
-.section--nude {
-  background-color: var(--nude);
+.section--bege-rosado {
+  background-color: var(--bege-rosado);
 }
 
 /* --------------------------------------------------------------------------
@@ -207,7 +222,7 @@ main:focus-visible {
   background-color: var(--terracota);
   color: var(--branco);
   font-family: var(--fonte-corpo);
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--fs-16);
   border: 2px solid var(--terracota);
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
@@ -222,16 +237,13 @@ main:focus-visible {
 
 .btn--outline {
   background-color: transparent;
-  /* texto em --marrom (não --terracota): terracota sobre --areia/--nude
-     fica abaixo de 4.5:1; a borda continua em --terracota (contraste de
-     elemento de UI, que exige só 3:1, então passa normalmente) */
-  color: var(--marrom);
+  color: var(--terracota);
 }
 
 .btn--outline:hover,
 .btn--outline:focus-visible {
-  background-color: var(--terracota);
-  color: var(--branco);
+  background-color: var(--bege-rosado);
+  color: var(--terracota);
 }
 
 /* --------------------------------------------------------------------------
@@ -241,19 +253,28 @@ main:focus-visible {
 .olho {
   display: inline-block;
   font-family: var(--fonte-corpo);
-  font-size: var(--fs-14);
-  font-weight: 600;
+  font-size: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem); /* 12–13px */
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  /* --marrom (não --terracota): o olho aparece sobre --branco/--areia/--nude
-     e --terracota só passa em 4,27:1 sobre --branco — abaixo do AA 4.5:1 */
-  color: var(--marrom);
+  letter-spacing: 0.14em;
+  /* --terracota: entre 4,50:1 (sobre --areia, margem mínima) e 5,30:1
+     (sobre --branco) — passa no AA em todos os fundos claros do site */
+  color: var(--terracota);
   margin-bottom: var(--esp-8);
 }
 
 .titulo-secao {
   color: var(--marrom);
   margin-bottom: var(--esp-16);
+}
+
+/* Trecho em destaque dentro de um título (h1/h2), criando duas cores no
+   mesmo título: o restante fica em --marrom (ou --branco, na faixa de
+   decisão), o trecho em <em class="destaque"> fica em --terracota e
+   itálico. */
+.destaque {
+  color: var(--terracota);
+  font-style: italic;
 }
 
 /* --------------------------------------------------------------------------
@@ -290,17 +311,40 @@ main:focus-visible {
 .cabecalho__logo {
   display: flex;
   align-items: center;
-  gap: var(--esp-8);
   min-width: 0;
-  flex: 1 1 auto;
-  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Altura 52px no mobile, 62px no desktop — largura automática, o logo é
+   uma composição quadrada (brasão + nome empilhados), não uma faixa
+   horizontal. */
+.cabecalho__logo-moldura {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  /* Só um piso: se a imagem falhar e sumir (display:none), o placeholder
+     ainda tem onde aparecer. Com a imagem carregando normalmente, o
+     conteúdo é quem define a largura real (inline-flex). */
+  min-width: 52px;
+}
+
+@media (min-width: 900px) {
+  .cabecalho__logo-moldura {
+    height: 62px;
+    min-width: 62px;
+  }
 }
 
 .cabecalho__logo-img {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  height: 100%;
+  width: auto;
   object-fit: contain;
+}
+
+.cabecalho__logo-moldura .placeholder-imagem {
+  font-size: var(--fs-14);
+  padding: 0;
 }
 
 /* Enquanto assets/logo.svg (ou outra imagem placeholder do site) não
@@ -324,7 +368,7 @@ main:focus-visible {
   text-align: center;
   font-family: var(--fonte-titulo);
   font-size: var(--fs-18);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--marrom);
   pointer-events: none;
 }
@@ -333,30 +377,10 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   display: flex;
 }
 
-.cabecalho__logo-texto {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-  min-width: 0;
-}
-
-.cabecalho__nome {
-  font-family: var(--fonte-titulo);
-  font-size: var(--fs-18);
-  font-weight: 600;
-  color: var(--marrom);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cabecalho__crp {
-  font-family: var(--fonte-corpo);
-  font-size: var(--fs-14);
-  color: var(--marrom-suave);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* Logo repetido no topo do drawer mobile (item 7.5) — some no desktop,
+   onde a navegação já é a barra horizontal e o logo do header já basta */
+.cabecalho__nav-logo {
+  display: none;
 }
 
 /* Navegação (desktop) */
@@ -459,7 +483,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .cabecalho__overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(51, 36, 26, 0.4);
+  background-color: rgba(74, 46, 24, 0.4);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -512,6 +536,10 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     visibility: visible;
     pointer-events: auto;
     transition: transform 0.35s ease;
+  }
+
+  .cabecalho__nav-logo {
+    display: flex;
   }
 
   .cabecalho__lista {
@@ -594,9 +622,9 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   .hero__conteudo {
     grid-template-columns: 1.1fr 0.9fr;
     grid-template-rows: auto auto;
-    /* row-gap menor que column-gap: aproxima o título do corpo de texto
-       (título → corpo) sem mexer no espaço horizontal até a imagem */
-    row-gap: var(--esp-24);
+    /* row-gap bem menor que column-gap: aproxima o título do corpo de
+       texto (título → corpo) sem mexer no espaço horizontal até a imagem */
+    row-gap: 0;
     column-gap: var(--esp-64);
     align-items: start;
   }
@@ -611,6 +639,9 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     order: initial;
     grid-column: 1;
     grid-row: 2;
+    /* Puxa para cima além do row-gap: compensa o respiro que o
+       line-height do título deixa abaixo da última linha */
+    margin-top: -1.5rem;
   }
 
   .hero__imagem {
@@ -628,23 +659,29 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 }
 
 .hero__titulo {
-  font-size: clamp(2.125rem, 1.35rem + 3vw, 3.75rem);
-  line-height: 1.15;
+  font-size: 1.375rem; /* 22px mobile — cabe nas duas linhas do <br> (375px+) */
+  line-height: 1.2;
   /* Sem margin-bottom: o espaço até o próximo bloco já vem do gap do grid
      (.hero__conteudo) — somar os dois abria um vão grande demais */
   margin-bottom: 0;
 }
 
+@media (min-width: 768px) {
+  .hero__titulo {
+    font-size: clamp(2.875rem, 2.5rem + 1.2vw, 3.25rem); /* 46–52px desktop */
+  }
+}
+
 .hero__subtitulo {
   font-size: var(--fs-18);
-  color: var(--marrom-escuro);
+  color: var(--marrom-suave);
   margin-bottom: var(--esp-16);
 }
 
 .hero__apoio {
   font-family: var(--fonte-corpo);
   font-size: var(--fs-16);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--marrom-suave);
   margin-bottom: var(--esp-32);
 }
@@ -666,7 +703,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .hero__moldura {
   position: absolute;
   inset: 0;
-  background-color: var(--laranja-suave);
+  background-color: var(--mostarda);
   /* Mesmo formato de moldura da seção "Sobre mim" (cantos assimétricos) */
   border-radius: 24px 96px 24px 96px;
   transform: translate(18px, 18px);
@@ -679,7 +716,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 24px 96px 24px 96px;
-  background: linear-gradient(160deg, var(--nude), var(--areia));
+  background: linear-gradient(160deg, var(--bege-rosado), var(--areia));
   box-shadow: var(--sombra-suave);
 }
 
@@ -726,7 +763,11 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    -------------------------------------------------------------------------- */
 
 .faixa-credenciais {
-  background-color: var(--marrom);
+  /* Fundo claro (não mais um bloco escuro cortando a página): integra a
+     faixa ao restante do site, com bordas finas marcando os limites */
+  background-color: var(--areia);
+  border-top: 1px solid var(--mostarda-escuro);
+  border-bottom: 1px solid var(--mostarda-escuro);
   padding-block: var(--esp-32);
 }
 
@@ -748,7 +789,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   display: flex;
   align-items: center;
   gap: var(--esp-8);
-  color: var(--branco);
+  /* --marrom-escuro sobre --areia: 10,52:1 (AA bem folgado) */
+  color: var(--marrom-escuro);
   font-family: var(--fonte-corpo);
   font-weight: 500;
   font-size: var(--fs-14);
@@ -760,7 +802,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   text-align: center;
 }
 
-/* Ícone de check em SVG, na cor --terracota */
+/* Ícone de check em SVG, na cor --terracota: 4,50:1 sobre --areia */
 .faixa-credenciais__check {
   display: inline-flex;
   align-items: center;
@@ -810,8 +852,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 }
 
-/* Ocultada no mobile a pedido da cliente — o CRP continua visível no
-   rodapé, então a informação legal não se perde. Só oculta visualmente
+/* Ocultada no mobile a pedido da cliente. O CRP (obrigatório pelo CFP)
+   segue visível no rodapé em qualquer largura — só oculta visualmente
    (display:none), a faixa continua ativa e completa no desktop. */
 @media (max-width: 767px) {
   .faixa-credenciais {
@@ -868,18 +910,9 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   text-align: center;
 }
 
-/* Reduz o tamanho conforme necessário para caber em uma única linha no desktop */
-.identificacao__cabecalho .titulo-secao {
-  font-size: clamp(1.75rem, 1.1rem + 1.6vw, var(--fs-34));
-}
-
 @media (min-width: 1024px) {
   .identificacao__cabecalho {
     margin-bottom: var(--esp-64);
-  }
-
-  .identificacao__cabecalho .titulo-secao {
-    white-space: nowrap;
   }
 }
 
@@ -908,7 +941,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   /* Sem gap: o espaçamento vem da margin-bottom do próprio ícone (.icone),
      evitando somar gap + margem e abrir espaço demais */
   background-color: var(--areia);
-  border: 1px solid var(--nude-escuro);
+  border: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
   border-radius: var(--raio-borda);
   padding: var(--esp-32) var(--esp-24);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -945,6 +978,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin-top: var(--esp-48);
   font-family: var(--fonte-titulo);
   font-style: italic;
+  font-weight: 500;
   font-size: var(--fs-20);
   color: var(--marrom);
   text-align: center;
@@ -985,12 +1019,12 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   max-width: 400px;
 }
 
-/* Moldura em --nude, deslocada na direção oposta à do hero, e cantos
+/* Moldura em --bege-rosado, deslocada na direção oposta à do hero, e cantos
    assimétricos para diferenciar visualmente da foto do hero */
 .sobre__moldura {
   position: absolute;
   inset: 0;
-  background-color: var(--nude);
+  background-color: var(--bege-rosado);
   border-radius: 24px 96px 24px 96px;
   transform: translate(-16px, 16px);
   z-index: 0;
@@ -1002,7 +1036,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 24px 96px 24px 96px;
-  background: linear-gradient(160deg, var(--nude-escuro), var(--areia));
+  background: linear-gradient(160deg, var(--mostarda-escuro), var(--areia));
   box-shadow: var(--sombra-suave);
 }
 
@@ -1022,7 +1056,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   gap: var(--esp-24);
   margin-top: var(--esp-24);
   padding-top: var(--esp-24);
-  border-top: 1px solid var(--nude-escuro);
+  border-top: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
 }
 
 .sobre__mini-bloco {
@@ -1034,9 +1068,10 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .sobre__numero {
   font-family: var(--fonte-titulo);
   font-size: var(--fs-20);
-  font-weight: 600;
-  /* --marrom: --terracota fica em 3,80:1 sobre o fundo --areia da seção */
-  color: var(--marrom);
+  font-weight: 500;
+  /* --terracota: 4,50:1 sobre --areia — passa mesmo pelo limiar de texto
+     normal (4.5:1), então não depende da faixa maior liberada a negrito */
+  color: var(--terracota);
 }
 
 .sobre__legenda {
@@ -1050,8 +1085,22 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin-bottom: 0;
   font-family: var(--fonte-titulo);
   font-style: italic;
+  font-weight: 500;
   font-size: var(--fs-20);
+  line-height: 1.2;
   color: var(--marrom);
+}
+
+.sobre__assinatura-crp {
+  /* Negativo: o line-height de 1.65 herdado do <p> base deixa bastante
+     espaço abaixo da linha do nome mesmo com line-height:1.2 nela — puxa
+     o CRP pra cima desse respiro */
+  margin-top: -0.35rem;
+  margin-bottom: 0;
+  line-height: 1.2;
+  font-family: var(--fonte-corpo);
+  font-size: var(--fs-14);
+  color: var(--marrom-suave);
 }
 
 @media (max-width: 767px) {
@@ -1113,7 +1162,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
      a largura da tela no mobile */
   min-width: 0;
   overflow-wrap: break-word;
-  background-color: var(--nude);
+  background-color: var(--bege-rosado);
   border-radius: var(--raio-borda);
   padding: var(--esp-32) var(--esp-24);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1125,15 +1174,13 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 }
 
 .ajuda__titulo {
-  font-size: var(--fs-18);
   margin: 0 0 var(--esp-8);
 }
 
 .ajuda__apoio {
   font-size: var(--fs-14);
-  /* --marrom-escuro: --marrom-suave fica em 3,93:1 sobre o fundo --nude do
-     card, abaixo do AA (4,5:1) — mantido --marrom-escuro por decisão da cliente */
-  color: var(--marrom-escuro);
+  /* --marrom-suave (ajustado): 4,76:1 sobre o fundo --bege-rosado do card */
+  color: var(--marrom-suave);
   max-width: none;
   margin: 0;
 }
@@ -1227,7 +1274,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   padding-left: var(--esp-24);
   font-family: var(--fonte-corpo);
   font-size: var(--fs-14);
-  color: var(--marrom-escuro);
+  color: var(--marrom-suave);
 }
 
 .atendimento__lista li::before {
@@ -1235,7 +1282,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   position: absolute;
   left: 0;
   color: var(--terracota);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .atendimento__botao {
@@ -1305,26 +1352,71 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 }
 
-.consultorio__galeria {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--esp-16);
+.consultorio__carrossel {
+  position: relative;
+  max-width: 640px;
+  margin-inline: auto;
 }
 
-@media (min-width: 700px) {
-  .consultorio__galeria {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--esp-24);
-  }
+.consultorio__viewport {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.consultorio__trilha {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .consultorio__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-8);
-  width: 100%;
-  text-align: center;
-  cursor: zoom-in;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Estado calculado em JS (distância circular até o índice atual) —
+   central maior e nítida, vizinhas parciais nas laterais, resto oculto */
+.consultorio__item[data-estado="ativo"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.consultorio__item[data-estado="anterior"] {
+  transform: translate(-138%, -50%) scale(0.85);
+  opacity: 0.4;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.consultorio__item[data-estado="proxima"] {
+  transform: translate(38%, -50%) scale(0.85);
+  opacity: 0.4;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.consultorio__item[data-estado="oculto"] {
+  transform: translate(-50%, -50%) scale(0.85);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  /* Mesma lógica, com as laterais aparecendo menos */
+  .consultorio__item[data-estado="anterior"] {
+    transform: translate(-160%, -50%) scale(0.8);
+  }
+
+  .consultorio__item[data-estado="proxima"] {
+    transform: translate(60%, -50%) scale(0.8);
+  }
 }
 
 .consultorio__foto-moldura {
@@ -1333,7 +1425,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--raio-borda);
-  background: linear-gradient(160deg, var(--nude), var(--areia));
+  background: linear-gradient(160deg, var(--bege-rosado), var(--areia));
   box-shadow: var(--sombra-suave);
 }
 
@@ -1341,27 +1433,93 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.consultorio__item:hover .consultorio__foto,
-.consultorio__item:focus-visible .consultorio__foto {
-  transform: scale(1.05);
+.consultorio__item[data-estado="ativo"] {
+  cursor: zoom-in;
 }
 
-.consultorio__legenda {
-  font-family: var(--fonte-corpo);
-  font-size: var(--fs-14);
-  color: var(--marrom-suave);
+/* Setas circulares sobrepostas às bordas da foto central */
+.consultorio__seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--branco);
+  color: var(--terracota);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-suave);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Atraso escalonado entre as fotos da galeria ao entrarem na tela */
-.consultorio__galeria .reveal:nth-child(1) { transition-delay: 0s; }
-.consultorio__galeria .reveal:nth-child(2) { transition-delay: 0.08s; }
-.consultorio__galeria .reveal:nth-child(3) { transition-delay: 0.16s; }
-.consultorio__galeria .reveal:nth-child(4) { transition-delay: 0.24s; }
-.consultorio__galeria .reveal:nth-child(5) { transition-delay: 0.32s; }
-.consultorio__galeria .reveal:nth-child(6) { transition-delay: 0.4s; }
+.consultorio__seta svg {
+  width: 22px;
+  height: 22px;
+}
+
+.consultorio__seta:hover,
+.consultorio__seta:focus-visible {
+  background-color: var(--bege-rosado);
+}
+
+.consultorio__seta--anterior {
+  left: 4%;
+}
+
+.consultorio__seta--proxima {
+  right: 4%;
+}
+
+@media (max-width: 480px) {
+  .consultorio__seta {
+    width: 40px;
+    height: 40px;
+  }
+
+  .consultorio__seta svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.consultorio__bullets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--esp-16);
+}
+
+.consultorio__bullet {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.consultorio__bullet::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--mostarda-escuro);
+  opacity: 0.6;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.consultorio__bullet[aria-current="true"]::before {
+  background-color: var(--terracota);
+  opacity: 1;
+  transform: scale(1.4);
+}
 
 /* --------------------------------------------------------------------------
    Lightbox da galeria do consultório
@@ -1388,7 +1546,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .lightbox__overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(51, 36, 26, 0.85);
+  background-color: rgba(74, 46, 24, 0.85);
 }
 
 .lightbox__conteudo {
@@ -1427,7 +1585,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   justify-content: center;
   color: var(--branco);
   font-size: 1.75rem;
-  background-color: rgba(51, 36, 26, 0.5);
+  background-color: rgba(74, 46, 24, 0.5);
   border-radius: 50%;
 }
 
@@ -1455,7 +1613,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   aspect-ratio: 4 / 3;
   border-radius: var(--raio-borda);
   overflow: hidden;
-  background: linear-gradient(160deg, var(--nude-escuro), var(--areia));
+  background: linear-gradient(160deg, var(--mostarda-escuro), var(--areia));
   box-shadow: var(--sombra-suave);
 }
 
@@ -1463,14 +1621,6 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.lightbox__legenda {
-  margin: 0;
-  color: var(--branco);
-  font-family: var(--fonte-corpo);
-  font-size: var(--fs-14);
-  text-align: center;
 }
 
 /* --------------------------------------------------------------------------
@@ -1514,7 +1664,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: var(--raio-borda);
-  background: linear-gradient(160deg, var(--nude), var(--branco));
+  background: linear-gradient(160deg, var(--bege-rosado), var(--branco));
 }
 
 .instagram__foto {
@@ -1563,11 +1713,11 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 }
 
 .faq__item {
-  border-bottom: 1px solid var(--nude-escuro);
+  border-bottom: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
 }
 
 .faq__item:first-child {
-  border-top: 1px solid var(--nude-escuro);
+  border-top: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
 }
 
 .faq__pergunta-titulo {
@@ -1584,8 +1734,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   min-height: 44px;
   padding-block: var(--esp-24);
   text-align: left;
-  font-family: var(--fonte-corpo);
-  font-weight: 600;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
   font-size: var(--fs-18);
   color: var(--marrom-escuro);
 }
@@ -1654,7 +1804,10 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    -------------------------------------------------------------------------- */
 
 .decisao {
-  background-color: var(--marrom);
+  /* --terracota (não --mostarda): o texto da faixa é claro (--branco/
+     --bege-rosado) e só passa no AA sobre --terracota (5,30:1 e 4,65:1);
+     sobre --mostarda ficaria em 1,67:1 */
+  background-color: var(--terracota);
   padding-block: var(--esp-96);
 }
 
@@ -1681,17 +1834,41 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .decisao__frase {
   margin: 0;
   font-family: var(--fonte-titulo);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.75rem, 1.2rem + 2.5vw, 2.875rem);
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--branco);
+}
+
+/* --terracota (usado no resto do site) ficaria invisível em cima do
+   próprio fundo --terracota desta faixa. --mostarda no lugar: 3,17:1,
+   suficiente para o texto grande desta frase (>=24px), mas abaixo do
+   4.5:1 de texto normal — por isso só aqui, não é o token padrão do
+   destaque. */
+.decisao__frase .destaque {
+  color: var(--mostarda);
 }
 
 .decisao__apoio {
   margin: 0;
   font-family: var(--fonte-corpo);
   font-size: var(--fs-18);
-  color: var(--nude);
+  color: var(--bege-rosado);
+}
+
+/* .btn padrão (fundo --terracota) ficaria invisível sobre o fundo
+   --terracota desta faixa — inverte para --branco aqui */
+.decisao .btn {
+  background-color: var(--branco);
+  border-color: var(--branco);
+  color: var(--terracota);
+}
+
+.decisao .btn:hover,
+.decisao .btn:focus-visible {
+  background-color: var(--bege-rosado);
+  border-color: var(--bege-rosado);
+  color: var(--terracota-hover);
 }
 
 /* --------------------------------------------------------------------------
@@ -1798,7 +1975,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 .campo label {
   font-family: var(--fonte-corpo);
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--fs-14);
   color: var(--marrom-escuro);
 }
@@ -1813,7 +1990,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .campo textarea {
   min-height: 44px;
   padding: var(--esp-8) var(--esp-16);
-  border: 1px solid var(--nude-escuro);
+  border: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
   border-radius: 10px;
   background-color: var(--branco);
   font-family: var(--fonte-corpo);
@@ -1853,7 +2030,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .contato__feedback {
   margin: 0 0 var(--esp-16);
   font-size: var(--fs-14);
-  font-weight: 600;
+  font-weight: 500;
   min-height: 1.2em;
 }
 
@@ -1923,7 +2100,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   line-height: 1;
   border-radius: 50%;
   background-color: var(--whatsapp-verde);
-  box-shadow: 0 4px 14px rgba(51, 36, 26, 0.22);
+  box-shadow: 0 4px 14px rgba(74, 46, 24, 0.22);
   opacity: 0;
   transform: translateY(16px);
   pointer-events: none;
@@ -1947,7 +2124,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 .botao-flutuante:hover,
 .botao-flutuante:focus-visible {
-  box-shadow: 0 6px 18px rgba(51, 36, 26, 0.28);
+  box-shadow: 0 6px 18px rgba(74, 46, 24, 0.28);
 }
 
 .botao-flutuante__icone {
@@ -1985,41 +2162,51 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    -------------------------------------------------------------------------- */
 
 .rodape {
-  background-color: var(--marrom-escuro);
+  /* Mesmo --terracota da faixa "Mudanças importantes..." (.decisao) */
+  background-color: var(--terracota);
 }
 
 .rodape__conteudo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--esp-16);
-  padding-block: var(--esp-64);
+  gap: var(--esp-8);
+  padding-block: var(--esp-48);
   text-align: center;
 }
 
-.rodape__nome {
-  font-family: var(--fonte-titulo);
-  font-size: var(--fs-26);
-  font-weight: 600;
-  color: var(--areia);
+/* Logo do rodapé: mesma lógica de largura/altura automática do header e
+   da seção Sobre (itens 7/8), com a versão clara do arquivo (logo-rodape.png)
+   pensada para o fundo escuro. min-height é só o piso do placeholder. */
+.rodape__logo-moldura {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 100px;
+  min-height: 28px;
 }
 
-.rodape__crp {
-  font-family: var(--fonte-corpo);
-  font-size: var(--fs-16);
-  color: var(--nude);
+.rodape__logo {
+  width: 100%;
+  height: auto;
+}
+
+.rodape__logo-moldura .placeholder-imagem {
+  color: var(--bege-rosado);
+  font-size: var(--fs-14);
+  padding: 0;
 }
 
 .rodape__barra {
-  /* --nude a 25% de opacidade: divisor sutil, porém visível, sobre o
-     fundo --marrom-escuro */
-  border-top: 1px solid rgba(233, 217, 198, 0.25);
+  /* --bege-rosado a 40% de opacidade: divisor sutil, porém visível,
+     sobre o fundo --terracota */
+  border-top: 1px solid rgba(250, 238, 228, 0.4);
 }
 
 .rodape__barra-conteudo {
   display: flex;
   justify-content: center;
-  padding-block: var(--esp-24);
+  padding-block: var(--esp-16);
   /* Reserva espaço para o botão flutuante do WhatsApp (56px + 20px de
      offset no desktop; 52px + 16px no mobile) não cobrir o copyright */
   padding-bottom: 5.5rem;
@@ -2029,16 +2216,18 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 }
 
 /* Especificidade "p" precisa vencer o seletor global `p { color: ... }`
-   (style.css, base): sem isso o texto herdava --marrom-escuro do elemento
-   <p> em vez do --nude do container, ficando quase ilegível sobre o fundo
-   --marrom-escuro do rodapé */
+   (style.css, base): sem isso o texto herdava --marrom-suave do elemento
+   <p> em vez do --bege-rosado do copyright, ficando quase ilegível sobre
+   o fundo --terracota do rodapé. --mostarda (usado antes, quando o fundo
+   era --marrom-escuro) ficaria em 3,17:1 aqui — abaixo do AA de texto
+   normal (4.5:1); --bege-rosado passa em 4,65:1. */
 .rodape__barra-conteudo p {
   margin: 0;
-  color: var(--nude);
+  color: var(--bege-rosado);
 }
 
 .rodape__barra-conteudo a {
-  color: var(--nude);
+  color: var(--bege-rosado);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -2050,7 +2239,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 @media (max-width: 767px) {
   .rodape__conteudo {
-    padding-block: var(--esp-48);
+    padding-block: var(--esp-32);
   }
 }
 
@@ -2062,35 +2251,18 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 @media (max-width: 767px) {
   .hero__titulo {
-    font-size: clamp(1.625rem, 1.4rem + 1.5vw, 1.875rem);
-    line-height: 1.3;
-    margin-bottom: 0;
     text-wrap: balance;
   }
 
-  .titulo-secao,
-  .identificacao__cabecalho .titulo-secao {
-    font-size: clamp(1.375rem, 1.2rem + 1vw, 1.5625rem);
-    line-height: 1.3;
+  .titulo-secao {
     margin-bottom: var(--esp-8);
-    white-space: normal;
     text-wrap: balance;
-  }
-
-  .atendimento__card h3 {
-    font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.1875rem);
-    line-height: 1.3;
   }
 
   .decisao__frase {
     font-size: clamp(1.375rem, 1.1rem + 2vw, 1.75rem);
     line-height: 1.3;
     text-wrap: balance;
-  }
-
-  .rodape__nome {
-    font-size: clamp(1.25rem, 1.05rem + 1vw, 1.5rem);
-    line-height: 1.3;
   }
 }
 
@@ -2107,7 +2279,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   .cabecalho__link::after,
   .identificacao__card,
   .ajuda__card,
-  .consultorio__foto,
+  .consultorio__item,
   .instagram__foto,
   .lightbox,
   .faq__icone::after,
