@@ -1278,7 +1278,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 }
 
 .atendimento__lista li::before {
-  content: '✓';
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--terracota);
@@ -1306,7 +1306,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     align-items: center;
   }
 
-  /* Ícone (✓) + texto centralizados como um par na mesma linha */
+  /* Ponto + texto centralizados como um par na mesma linha */
   .atendimento__lista li {
     display: flex;
     align-items: center;
