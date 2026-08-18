@@ -1316,7 +1316,13 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 
   .atendimento__lista li::before {
+    content: '';
     position: static;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--terracota);
+    flex-shrink: 0;
   }
 
   .atendimento__botao {
