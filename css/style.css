@@ -1312,6 +1312,9 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
   .atendimento__lista li::before {
     content: '';
+    top: 0.75em; /* metade do line-height (1.5) herdado do body: centraliza
+      o ponto na 1ª linha do texto, mesmo se as linhas seguintes quebrarem */
+    transform: translateY(-50%);
     width: 5px;
     height: 5px;
     border-radius: 50%;
