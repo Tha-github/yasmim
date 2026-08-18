@@ -1302,23 +1302,27 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     margin-inline: auto;
   }
 
-  /* Bloco de cada item centralizado no card, mas com texto alinhado à
-     esquerda (recuo do parágrafo) — assim o ponto fica preso à primeira
-     linha do texto mesmo em itens que quebram em 2 linhas */
   .atendimento__lista {
     align-items: center;
-    text-align: left;
+  }
+
+  /* Ponto como parte do texto (inline), não mais posicionado à margem —
+     assim ele fica sempre colado à primeira palavra e o parágrafo
+     continua centralizado, inclusive se quebrar em 2 linhas */
+  .atendimento__lista li {
+    padding-left: 0;
   }
 
   .atendimento__lista li::before {
     content: '';
-    top: 0.75em; /* metade do line-height (1.5) herdado do body: centraliza
-      o ponto na 1ª linha do texto, mesmo se as linhas seguintes quebrarem */
-    transform: translateY(-50%);
+    position: static;
+    display: inline-block;
     width: 5px;
     height: 5px;
+    margin-right: var(--esp-8);
     border-radius: 50%;
     background-color: var(--terracota);
+    vertical-align: middle;
   }
 
   .atendimento__botao {
