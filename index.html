@@ -32,6 +32,23 @@
   })(window,document,'script','dataLayer','GTM-XXXXXXX'); /* TROCAR AQUI */</script>
   <!-- End Google Tag Manager -->
 
+  <!-- Event snippet for cliques no whatsapp conversion page
+  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-11198622777/kHmaCNTvxeAcELnY9dsp',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -310,7 +327,7 @@
     <section class="identificacao section" id="identificacao">
       <div class="container">
         <div class="identificacao__cabecalho reveal">
-          <span class="olho">Talvez seja a hora</span>
+          <span class="olho">Autocuidado</span>
           <h2 class="titulo-secao">Talvez a terapia <em class="destaque">faça sentido</em> para você se…</h2>
         </div>
 
@@ -559,6 +576,9 @@
           <p>Atuo por meio da Terapia Cognitivo-Comportamental (TCC) e possuo especialização em Neuropsicologia, buscando oferecer um atendimento ético, acolhedor e fundamentado cientificamente.</p>
           <p>Acredito que a terapia é um espaço onde cada pessoa pode compreender melhor sua história, seus sentimentos e construir mudanças que façam sentido para a sua realidade.</p>
 
+          <p class="sobre__assinatura">Yasmim dos Santos Pinho</p>
+          <p class="sobre__assinatura-crp">CRP 06/162942</p>
+
           <div class="sobre__mini-blocos">
             <div class="sobre__mini-bloco">
               <span class="sobre__numero">+6 anos</span>
@@ -573,9 +593,6 @@
               <span class="sobre__legenda">especialização</span>
             </div>
           </div>
-
-          <p class="sobre__assinatura">Yasmim dos Santos Pinho</p>
-          <p class="sobre__assinatura-crp">CRP 06/162942</p>
         </div>
       </div>
     </section>

@@ -830,6 +830,11 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     display: none;
   }
 
+  .hero__apoio {
+    font-size: 0.875rem; /* 14px no mobile — 15px continua no desktop */
+    margin-bottom: var(--esp-16);
+  }
+
   .hero__imagem {
     /* ~10% menor que os 320px anteriores */
     max-width: 288px;
@@ -850,11 +855,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 
   .hero__info-lista {
-    align-items: center;
-  }
-
-  .hero__info-lista li {
-    justify-content: center;
+    display: none;
   }
 
   /* Quebra em duas linhas só no mobile: "Yasmim dos Santos Pinho" e,
@@ -1259,40 +1260,12 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 @media (max-width: 767px) {
   .sobre__texto {
-    display: flex;
-    flex-direction: column;
     text-align: center;
   }
 
   .sobre__texto > p {
     max-width: 34ch;
     margin-inline: auto;
-  }
-
-  /* Reordena só no mobile: nome/CRP passam a vir depois do texto e antes
-     da linha divisória (o border-top do .sobre__mini-blocos). No desktop
-     a ordem no HTML continua valendo (mini-blocos antes da assinatura). */
-  .sobre__texto > .olho {
-    order: 1;
-  }
-
-  .sobre__texto > .titulo-secao {
-    order: 2;
-  }
-
-  /* As 3 primeiras tags <p> do texto (os parágrafos de corpo) — não
-     inclui .sobre__assinatura/.sobre__assinatura-crp, que são as próximas */
-  .sobre__texto > p:nth-of-type(-n+3) {
-    order: 3;
-  }
-
-  .sobre__assinatura,
-  .sobre__assinatura-crp {
-    order: 4;
-  }
-
-  .sobre__mini-blocos {
-    order: 5;
   }
 }
 
