@@ -21,9 +21,7 @@
        EVENTOS JÁ DISPARADOS PELO SITE (ver js/main.js):
        - "clique_whatsapp": toda vez que alguém clica em um botão de
          WhatsApp (com o parâmetro whatsapp_origem = mensagem do botão).
-       - "envio_formulario_contato": quando o formulário de contato é
-         enviado com sucesso (com o parâmetro tipo_atendimento).
-       Basta criar "Acionadores" no GTM baseados nesses nomes de evento
+       Basta criar um "Acionador" no GTM baseado nesse nome de evento
        para contar agendamentos no Google Analytics ou nos Ads.
        ================================================================== -->
   <!-- Google Tag Manager -->
@@ -72,7 +70,10 @@
   <!-- Preconnect + Google Fonts (Cormorant Garamond e Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Peso 1,700 (itálico negrito) adicionado nesta rodada só para suportar
+       o negrito pedido em "cuidar de si" no H1 do hero (item 1.2) — mesma
+       família e demais pesos já aprovados, sem alteração de fonte. -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Folhas de estilo -->
   <link rel="stylesheet" href="css/reset.css">
@@ -170,8 +171,9 @@
           </span>
         </a>
         <ul class="cabecalho__lista">
-          <li><a href="#sobre" class="cabecalho__link">Sobre</a></li>
           <li><a href="#ajuda" class="cabecalho__link">Como posso ajudar</a></li>
+          <li><a href="#processo" class="cabecalho__link">Como funciona</a></li>
+          <li><a href="#sobre" class="cabecalho__link">Sobre</a></li>
           <li><a href="#atendimento" class="cabecalho__link">Atendimento</a></li>
           <li><a href="#consultorio" class="cabecalho__link">Consultório</a></li>
           <li><a href="#faq" class="cabecalho__link">Dúvidas</a></li>
@@ -205,7 +207,7 @@
     <!-- 2. Hero -->
     <section class="hero section" id="inicio">
       <div class="container hero__conteudo">
-        <h1 class="hero__titulo">A vida pede muito de você.<br>Reserve um espaço para <em class="destaque">cuidar de si</em>.</h1>
+        <h1 class="hero__titulo">A vida pede muito de você.<br><span class="hero__titulo-linha2">Reserve um espaço para <em class="destaque"><strong>cuidar de si</strong></em>.</span></h1>
 
         <div class="hero__imagem">
           <div class="hero__moldura" aria-hidden="true"></div>
@@ -224,8 +226,7 @@
         </div>
 
         <div class="hero__corpo">
-          <p class="hero__subtitulo">A terapia pode ajudar você a compreender melhor suas emoções, enfrentar desafios com mais equilíbrio e desenvolver uma relação mais saudável consigo mesmo.</p>
-          <p class="hero__apoio">Atendimento presencial e online para adultos.</p>
+          <p class="hero__apoio">Psicoterapia para adultos que desejam entender suas emoções, fortalecer a relação consigo mesmos e construir mudanças possíveis para a sua realidade.</p>
 
           <div class="hero__ctas">
             <a
@@ -235,6 +236,31 @@
             >Agende sua sessão</a>
             <a href="#sobre" class="btn btn--outline">Conheça meu trabalho</a>
           </div>
+
+          <ul class="hero__info-lista">
+            <li>
+              <span class="hero__info-icone" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <span>Atendimento particular</span>
+            </li>
+            <li>
+              <span class="hero__info-icone" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"></path>
+                  <path d="M10 19v-3.96 3.15"></path>
+                  <path d="M7 19h5"></path>
+                  <rect width="6" height="10" x="16" y="12" rx="2"></rect>
+                </svg>
+              </span>
+              <span>Presencial e online para adultos</span>
+            </li>
+          </ul>
+
+          <p class="hero__assinatura">Yasmim dos Santos Pinho<span class="hero__assinatura-separador"> · </span><span class="hero__assinatura-linha2">Psicóloga Clínica · CRP 06/162942</span></p>
         </div>
       </div>
     </section>
@@ -291,50 +317,20 @@
         <div class="identificacao__grid">
           <article class="identificacao__card reveal">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path>
-              <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path>
-              <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <p>Você sente que está sempre tentando dar conta de tudo.</p>
+            <p>Você sente que precisa dar conta de tudo, mesmo quando está cansado(a).</p>
           </article>
 
           <article class="identificacao__card reveal">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
-              <path d="m9 12 2 2 4-4"></path>
+              <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path>
+              <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path>
+              <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path>
+              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
             </svg>
-            <p>Tem dificuldade em dizer "não" e estabelecer limites.</p>
-          </article>
-
-          <article class="identificacao__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              <path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"></path>
-            </svg>
-            <p>Está vivendo conflitos nos relacionamentos.</p>
-          </article>
-
-          <article class="identificacao__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
-            </svg>
-            <p>Busca compreender melhor suas emoções.</p>
-          </article>
-
-          <article class="identificacao__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path>
-            </svg>
-            <p>Deseja desenvolver uma relação mais saudável consigo mesmo.</p>
-          </article>
-
-          <article class="identificacao__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg>
-            <p>Percebe que se cobra mais do que gostaria.</p>
+            <p>Tem <strong>dificuldade</strong> em <strong>dizer "não"</strong> e acaba colocando as necessidades dos outros à frente das suas.</p>
           </article>
 
           <article class="identificacao__card reveal">
@@ -348,23 +344,196 @@
               <path d="M6 18a4 4 0 0 1-2-7.464"></path>
               <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"></path>
             </svg>
-            <p>Nota que sua mente não desacelera.</p>
+            <p>Percebe que sua <strong>mente não desacelera</strong> e isso tem afetado seu bem-estar.</p>
           </article>
 
           <article class="identificacao__card reveal">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="m21 21-4.34-4.34"></path>
-              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <p>Pretende investir no seu autoconhecimento.</p>
+            <p>Seus <strong>relacionamentos</strong> têm sido fonte de conflitos, distanciamentos ou desgaste.</p>
+          </article>
+
+          <article class="identificacao__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            <p>Você se cobra mais do que gostaria e sente que nunca é suficiente.</p>
+          </article>
+
+          <article class="identificacao__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+            <p>Quer compreender melhor quem você é, o que sente e o que deseja para sua vida.</p>
           </article>
         </div>
 
-        <p class="identificacao__fechamento reveal">A terapia é um espaço para olhar para tudo isso com mais clareza e construir novas possibilidades.</p>
+        <div class="identificacao__fechamento reveal">
+          <p class="identificacao__fechamento-destaque">Você não precisa dar conta de tudo</p>
+          <p class="identificacao__fechamento-apoio">A terapia pode ser um espaço para olhar para tudo isso com mais clareza e construir novas possibilidades.</p>
+        </div>
       </div>
     </section>
 
-    <!-- 5. Sobre mim -->
+    <!-- 5. Como posso ajudar (temas atendidos) -->
+    <section class="ajuda section section--areia" id="ajuda">
+      <div class="container">
+        <div class="ajuda__cabecalho reveal">
+          <span class="olho">Como posso ajudar?</span>
+          <h2 class="titulo-secao">O que podemos trabalhar em terapia</h2>
+        </div>
+
+        <div class="ajuda__grid">
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
+            </svg>
+            <h3 class="ajuda__titulo">Ansiedade</h3>
+            <p class="ajuda__apoio">Compreender pensamentos e padrões que mantêm a ansiedade e desenvolver estratégias para lidar melhor com ela.</p>
+          </article>
+
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <path d="M15 10V9"></path>
+              <path d="M16.472 15a6 6 0 0 1-8.943 0"></path>
+              <path d="M9 10V9"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+            <h3 class="ajuda__titulo">Autoestima</h3>
+            <p class="ajuda__apoio">Fortalecer uma relação mais respeitosa e realista consigo mesma(o), valorizando quem você é e suas conquistas.</p>
+          </article>
+
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+            </svg>
+            <h3 class="ajuda__titulo">Autoconhecimento</h3>
+            <p class="ajuda__apoio">Compreender emoções, comportamentos e padrões para fazer escolhas mais conscientes.</p>
+          </article>
+
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <h3 class="ajuda__titulo">Relacionamentos</h3>
+            <p class="ajuda__apoio">Compreender padrões, limites e formas de se posicionar nas relações e construir conexões mais saudáveis.</p>
+          </article>
+
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+            </svg>
+            <h3 class="ajuda__titulo">Autocobrança</h3>
+            <p class="ajuda__apoio">Construir uma relação mais equilibrada com expectativas, desempenho e a forma como você se enxerga.</p>
+          </article>
+
+          <article class="ajuda__card reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <h3 class="ajuda__titulo">Qualidade de vida</h3>
+            <p class="ajuda__apoio">Encontrar mudanças possíveis que façam sentido para uma rotina mais leve e significativa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Como funciona a terapia -->
+    <section class="processo section" id="processo">
+      <div class="container">
+        <div class="processo__cabecalho reveal">
+          <span class="olho">Como funciona a terapia?</span>
+          <h2 class="titulo-secao">Um processo construído para você</h2>
+        </div>
+
+        <ol class="processo__linha-do-tempo">
+          <li class="processo__etapa reveal">
+            <div class="processo__marcador" aria-hidden="true">
+              <span class="processo__circulo">01</span>
+              <span class="processo__linha"></span>
+            </div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                </svg>
+                Primeiro contato
+              </h3>
+              <p>Você entra em contato pelo WhatsApp e conversamos sobre sua demanda e disponibilidade.</p>
+            </div>
+          </li>
+
+          <li class="processo__etapa reveal">
+            <div class="processo__marcador" aria-hidden="true">
+              <span class="processo__circulo">02</span>
+              <span class="processo__linha"></span>
+            </div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Primeira sessão
+              </h3>
+              <p>Nos conhecemos, compreendemos sua história e identificamos o que você deseja trabalhar.</p>
+            </div>
+          </li>
+
+          <li class="processo__etapa reveal">
+            <div class="processo__marcador" aria-hidden="true">
+              <span class="processo__circulo">03</span>
+              <span class="processo__linha"></span>
+            </div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="6"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                </svg>
+                Objetivos terapêuticos
+              </h3>
+              <p>A partir das suas necessidades, definimos os objetivos do seu processo terapêutico.</p>
+            </div>
+          </li>
+
+          <li class="processo__etapa reveal">
+            <div class="processo__marcador" aria-hidden="true">
+              <span class="processo__circulo">04</span>
+              <span class="processo__linha"></span>
+            </div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+                Acompanhamento
+              </h3>
+              <p>O processo é construído de forma individualizada e acompanhado ao longo das sessões.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 7. Sobre mim -->
     <section class="sobre section section--areia" id="sobre">
       <div class="container sobre__conteudo">
         <div class="sobre__imagem reveal">
@@ -411,105 +580,7 @@
       </div>
     </section>
 
-    <!-- 6. Como posso ajudar (temas atendidos) -->
-    <section class="ajuda section" id="ajuda">
-      <div class="container">
-        <div class="ajuda__cabecalho reveal">
-          <span class="olho">Como posso ajudar?</span>
-          <h2 class="titulo-secao">Atendimentos <em class="destaque">voltados para</em></h2>
-        </div>
-
-        <div class="ajuda__grid">
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Ansiedade</h3>
-            <p class="ajuda__apoio">Cuidar da ansiedade no seu próprio ritmo.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M15 10V9"></path>
-              <path d="M16.472 15a6 6 0 0 1-8.943 0"></path>
-              <path d="M9 10V9"></path>
-              <circle cx="12" cy="12" r="10"></circle>
-            </svg>
-            <h3 class="ajuda__titulo">Autoestima</h3>
-            <p class="ajuda__apoio">Fortalecer a relação que você tem consigo mesmo.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Autoconhecimento</h3>
-            <p class="ajuda__apoio">Um espaço para se conhecer com mais profundidade.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Relacionamentos</h3>
-            <p class="ajuda__apoio">Refletir sobre os vínculos que fazem parte da sua vida.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="m12 14 4-4"></path>
-              <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Desenvolvimento emocional</h3>
-            <p class="ajuda__apoio">Ampliar recursos para lidar com as emoções.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"></path>
-              <path d="M6 8h4"></path>
-              <path d="M6 18h4"></path>
-              <path d="m12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"></path>
-              <path d="M14 8h4"></path>
-              <path d="M14 18h4"></path>
-              <path d="m20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Dificuldade em estabelecer limites</h3>
-            <p class="ajuda__apoio">Encontrar espaço para dizer "não" quando for preciso.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="10" x2="10" y1="15" y2="9"></line>
-              <line x1="14" x2="14" y1="15" y2="9"></line>
-            </svg>
-            <h3 class="ajuda__titulo">Estresse e sobrecarga</h3>
-            <p class="ajuda__apoio">Um momento para desacelerar e respirar.</p>
-          </article>
-
-          <article class="ajuda__card reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icone" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path>
-              <path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path>
-              <path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path>
-              <path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path>
-              <path d="m19.07 4.93-1.41 1.41"></path>
-            </svg>
-            <h3 class="ajuda__titulo">Qualidade de vida</h3>
-            <p class="ajuda__apoio">Cuidar de si como parte da rotina.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Formas de atendimento (presencial e online) -->
+    <!-- 8. Formas de atendimento (presencial e online) -->
     <section class="atendimento section section--bege-rosado" id="atendimento">
       <div class="container">
         <div class="atendimento__cabecalho reveal">
@@ -529,14 +600,15 @@
             <p class="atendimento__descricao">Atendimento no consultório, em Santo André (SP), em um ambiente acolhedor e reservado.</p>
             <ul class="atendimento__lista">
               <li>Sessões de 50 minutos</li>
-              <li>Frequência semanal, ajustada conforme sua necessidade</li>
-              <li>Atendimento particular, com documentação para reembolso</li>
+              <li>Frequência semanal</li>
+              <li>Atendimento particular</li>
+              <li>Documentação para reembolso</li>
             </ul>
             <a
               href="#"
               class="btn atendimento__botao js-whatsapp-cta"
               data-mensagem="Olá, Yasmim! Gostaria de agendar um atendimento presencial em Santo André."
-            >Atendimento presencial</a>
+            >Agendar presencialmente</a>
           </article>
 
           <article class="atendimento__card reveal">
@@ -547,17 +619,18 @@
               </svg>
             </span>
             <h3>Online</h3>
-            <p class="atendimento__descricao">Sessões por videochamada, para todo o Brasil e para brasileiros no exterior.</p>
+            <p class="atendimento__descricao">Sessões por videochamada para todo o Brasil e para brasileiros que vivem no exterior.</p>
             <ul class="atendimento__lista">
               <li>Sessões de 50 minutos</li>
-              <li>Frequência semanal, ajustada conforme sua necessidade</li>
-              <li>Atendimento particular, com documentação para reembolso</li>
+              <li>Frequência semanal</li>
+              <li>Atendimento particular</li>
+              <li>Documentação para reembolso</li>
             </ul>
             <a
               href="#"
               class="btn atendimento__botao js-whatsapp-cta"
               data-mensagem="Olá, Yasmim! Gostaria de agendar um atendimento online."
-            >Atendimento online</a>
+            >Agendar online</a>
           </article>
         </div>
       </div>
@@ -567,8 +640,8 @@
     <section class="consultorio section" id="consultorio">
       <div class="container">
         <div class="consultorio__cabecalho reveal">
-          <span class="olho">Conheça o espaço</span>
-          <h2 class="titulo-secao">Conheça o <em class="destaque">consultório</em> presencial</h2>
+          <span class="olho">Conheça o consultório</span>
+          <h2 class="titulo-secao">Um espaço pensado para acolher você</h2>
           <p class="consultorio__apoio">Um ambiente pensado para acolher, com privacidade e cuidado em cada detalhe, para que você se sinta à vontade desde a chegada até o início da sessão.</p>
         </div>
 
@@ -817,7 +890,7 @@
           <div class="faq__item">
             <h3 class="faq__pergunta-titulo">
               <button type="button" class="faq__pergunta" id="faq-pergunta-4" aria-expanded="false" aria-controls="faq-resposta-4">
-                <span>Você atende convênios?</span>
+                <span>Atende convênios?</span>
                 <span class="faq__icone" aria-hidden="true"></span>
               </button>
             </h3>
@@ -876,7 +949,7 @@
     <!-- 11. Faixa final "Mudanças importantes começam com uma decisão" → CTA 3 -->
     <section class="decisao" id="decisao">
       <div class="container decisao__conteudo">
-        <h2 class="decisao__frase reveal">Mudanças importantes começam com <em class="destaque">uma decisão</em>.</h2>
+        <h2 class="decisao__frase reveal">Mudanças importantes<br class="decisao__quebra-desktop"> começam com <em class="destaque">uma decisão</em>.</h2>
         <p class="decisao__apoio reveal">Você não precisa ter todas as respostas agora, basta abrir espaço para começar.</p>
         <div class="decisao__cta reveal">
           <a
@@ -888,106 +961,52 @@
       </div>
     </section>
 
-    <!-- 12. Contato: formulário + mapa → CTA 4 (a própria ação de enviar já é a conversão) -->
+    <!-- 12. Contato: texto + WhatsApp + mapa → CTA 4 (contato exclusivamente via WhatsApp) -->
     <section class="contato section section--areia" id="contato">
       <div class="container">
         <div class="contato__conteudo">
           <div class="contato__info reveal">
             <span class="olho">Fale comigo</span>
             <h2 class="titulo-secao">Vamos conversar?</h2>
-            <p>Se você sente que chegou a hora de cuidar de você, fico à disposição para tirar dúvidas e agendar sua primeira sessão.</p>
+            <p>Estou aqui para te ouvir, tirar suas dúvidas e conversar sobre o início do seu processo terapêutico.</p>
 
-            <ul class="contato__canais">
-              <li>
-                <span class="contato__icone" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3a9 9 0 0 0-7.75 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"></path>
-                    <path d="M8.5 8.8c0-.4.3-.8.7-.8h.6c.3 0 .5.2.6.4l.5 1.2c.1.2 0 .5-.2.7l-.5.5c.4.9 1.1 1.6 2 2l.5-.5c.2-.2.4-.2.7-.2l1.2.5c.2.1.4.3.4.6v.6c0 .4-.4.7-.8.7-3.3 0-6-2.7-6-6Z" fill="currentColor" stroke="none"></path>
-                  </svg>
-                </span>
-                <a href="#" class="js-whatsapp-cta" data-mensagem="Olá! Gostaria de tirar uma dúvida.">Conversar no WhatsApp</a>
-              </li>
-              <li>
-                <span class="contato__icone" aria-hidden="true">
-                  <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="6" y="6" width="20" height="20" rx="6"></rect>
-                    <circle cx="16" cy="16" r="5"></circle>
-                    <circle cx="22" cy="10" r="1" fill="currentColor" stroke="none"></circle>
-                  </svg>
-                </span>
-                <a href="https://www.instagram.com/psi.yasmimpinho" target="_blank" rel="noopener noreferrer">@psi.yasmimpinho</a>
-              </li>
-              <li>
-                <span class="contato__icone" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M24 43S10 28 10 18a14 14 0 0 1 28 0c0 10-14 25-14 25z"></path>
-                    <circle cx="24" cy="18" r="5"></circle>
-                  </svg>
-                </span>
-                <!-- TROCAR AQUI: endereço completo do consultório (pendente com a cliente) -->
-                <span>Santo André (SP), endereço a confirmar</span>
-              </li>
-            </ul>
+            <a
+              href="#"
+              class="btn contato__whatsapp-botao js-whatsapp-cta"
+              data-mensagem="Olá! Gostaria de tirar uma dúvida."
+            >
+              <span class="contato__whatsapp-icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3a9 9 0 0 0-7.75 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"></path>
+                  <path d="M8.5 8.8c0-.4.3-.8.7-.8h.6c.3 0 .5.2.6.4l.5 1.2c.1.2 0 .5-.2.7l-.5.5c.4.9 1.1 1.6 2 2l.5-.5c.2-.2.4-.2.7-.2l1.2.5c.2.1.4.3.4.6v.6c0 .4-.4.7-.8.7-3.3 0-6-2.7-6-6Z" fill="currentColor" stroke="none"></path>
+                </svg>
+              </span>
+              Falar pelo WhatsApp
+            </a>
           </div>
 
-          <div class="contato__formulario-wrapper reveal">
-            <form class="contato__formulario" id="formulario-contato" novalidate>
-              <div class="campo">
-                <label for="campo-nome">Nome</label>
-                <input type="text" id="campo-nome" name="nome" autocomplete="name" aria-describedby="erro-nome">
-                <span class="campo__erro" id="erro-nome" role="alert"></span>
-              </div>
-
-              <div class="campo">
-                <label for="campo-telefone">Telefone/WhatsApp</label>
-                <input type="tel" id="campo-telefone" name="telefone" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="erro-telefone">
-                <span class="campo__erro" id="erro-telefone" role="alert"></span>
-              </div>
-
-              <div class="campo">
-                <label for="campo-email">E-mail <span class="campo__opcional">(opcional)</span></label>
-                <input type="email" id="campo-email" name="email" autocomplete="email">
-              </div>
-
-              <div class="campo">
-                <label for="campo-tipo">Tipo de atendimento</label>
-                <select id="campo-tipo" name="tipo" aria-describedby="erro-tipo">
-                  <option value="" selected disabled>Selecione uma opção</option>
-                  <option value="Presencial em Santo André">Presencial em Santo André</option>
-                  <option value="Online">Online</option>
-                </select>
-                <span class="campo__erro" id="erro-tipo" role="alert"></span>
-              </div>
-
-              <div class="campo">
-                <label for="campo-mensagem">Mensagem <span class="campo__opcional">(opcional)</span></label>
-                <textarea id="campo-mensagem" name="mensagem" rows="4"></textarea>
-              </div>
-
-              <p class="contato__feedback" id="contato-feedback" role="status" aria-live="polite"></p>
-
-              <button type="submit" class="btn contato__botao">Agende sua sessão</button>
-
-              <p class="contato__aviso">Seus dados são usados apenas para este contato. O atendimento segue o sigilo profissional.</p>
-            </form>
-          </div>
-
-          <!-- No mobile, o mapa fica empilhado depois do formulário. No
-               desktop, o CSS o reposiciona (grid-row/grid-column) de volta
-               para abaixo do texto de contato, ao lado do formulário.
-               TROCAR AQUI: assim que a cliente confirmar o endereço completo,
+          <!-- TROCAR AQUI: assim que a cliente confirmar o endereço completo,
                gerar o embed oficial em Google Maps > Compartilhar > Incorporar
                um mapa, e substituir o src abaixo pelo trecho fornecido (com
                pb=...). Link enviado pela cliente, para conferência manual:
                https://maps.app.goo.gl/Ywut3vT8o9KjeAsJ8 -->
-          <div class="contato__mapa reveal">
-            <iframe
-              class="contato__mapa-iframe"
-              src="https://www.google.com/maps?q=Consult%C3%B3rio+Yasmim+dos+Santos+Pinho%2C+Santo+Andr%C3%A9%2C+SP&output=embed"
-              loading="lazy"
-              title="Localização do consultório de Yasmim dos Santos Pinho em Santo André (SP)"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div class="contato__mapa-bloco reveal">
+            <span class="olho">Atendimento presencial em Santo André – SP</span>
+            <div class="contato__mapa">
+              <iframe
+                class="contato__mapa-iframe"
+                src="https://www.google.com/maps?q=Consult%C3%B3rio+Yasmim+dos+Santos+Pinho%2C+Santo+Andr%C3%A9%2C+SP&output=embed"
+                loading="lazy"
+                title="Localização do consultório de Yasmim dos Santos Pinho em Santo André (SP)"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/Ywut3vT8o9KjeAsJ8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contato__mapa-link"
+            >Ver localização no Google Maps</a>
           </div>
         </div>
       </div>
@@ -1024,10 +1043,7 @@
 
     <div class="rodape__barra">
       <div class="container rodape__barra-conteudo">
-        <!-- Quando a Top Site tiver site ou Instagram definitivo, trocar o
-             texto "Top Site" abaixo por:
-             <a href="https://URL-DA-TOP-SITE" target="_blank" rel="noopener noreferrer">Top Site</a> -->
-        <p>&copy; <span id="ano-atual"></span> Yasmim Pinho · Todos os direitos reservados · Site criado por Top Site</p>
+        <p>&copy; <span id="ano-atual"></span> Yasmim Pinho · Todos os direitos reservados · Site criado por <a href="https://www.instagram.com/topsitebr" target="_blank" rel="noopener noreferrer" aria-label="Abrir o perfil @topsitebr no Instagram (abre em nova aba)"><strong>Top Site</strong></a></p>
       </div>
     </div>
   </footer>

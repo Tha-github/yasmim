@@ -31,7 +31,7 @@ Depois acesse `http://localhost:8000` (ou a porta indicada).
 │   ├── reset.css        → reset moderno, acessibilidade de movimento
 │   └── style.css        → variáveis, utilitários e estilos de cada seção
 ├── /js
-│   └── main.js           → toda a interatividade (menu, lightbox, FAQ, formulário...)
+│   └── main.js           → toda a interatividade (menu, lightbox, FAQ, carrossel...)
 └── /assets
     ├── favicon.svg
     ├── logo.svg          → PENDENTE (ver "O que falta trocar")
@@ -95,16 +95,21 @@ conta Google, criar um contêiner do tipo "Web" — o ID aparece no canto
 superior direito do painel. O comentário no próprio `index.html` já
 tem esse passo a passo.
 
-O site já dispara dois eventos prontos para medir agendamentos
-(configuráveis como "Acionadores" dentro do GTM):
+O site já dispara um evento pronto para medir agendamentos (configurável
+como "Acionador" dentro do GTM):
 - `clique_whatsapp` — todo clique em botão de WhatsApp
-- `envio_formulario_contato` — todo envio válido do formulário de contato
+
+(O formulário de contato foi removido nesta rodada de ajustes — o
+contato agora é só por WhatsApp — então o evento `envio_formulario_contato`
+não existe mais.)
 
 ### 5. Endereço do consultório
 
-Aparece em 3 lugares (todos marcados `TROCAR AQUI`): seção "Contato"
-([index.html](index.html)), rodapé, e dentro do JSON-LD no `<head>`
-(campo `streetAddress`).
+Aparece em 2 lugares (marcados `TROCAR AQUI`) em [index.html](index.html):
+dentro do JSON-LD no `<head>` (campo `streetAddress`) e no comentário
+acima do `<iframe>` do mapa, na seção "Contato". Desde a remoção do
+formulário nesta rodada, a seção "Contato" não exibe mais o endereço
+como texto — só o mapa incorporado e o link para o Google Maps.
 
 ### 6. Mapa (Google Maps)
 

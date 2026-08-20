@@ -492,121 +492,7 @@ function inicializarFAQ() {
 }
 
 /**
- * Formata dígitos como telefone brasileiro: (00) 0000-0000 (10 dígitos,
- * fixo/celular antigo) ou (00) 00000-0000 (11 dígitos, celular com 9).
- * @param {string} valor - Valor bruto digitado no campo.
- * @returns {string} Telefone formatado conforme a quantidade de dígitos.
- */
-function formatarTelefone(valor) {
-  const digitos = valor.replace(/\D/g, '').slice(0, 11);
-
-  if (digitos.length === 0) return '';
-  if (digitos.length <= 2) return `(${digitos}`;
-  if (digitos.length <= 6) return `(${digitos.slice(0, 2)}) ${digitos.slice(2)}`;
-  if (digitos.length <= 10) return `(${digitos.slice(0, 2)}) ${digitos.slice(2, 6)}-${digitos.slice(6)}`;
-  return `(${digitos.slice(0, 2)}) ${digitos.slice(2, 7)}-${digitos.slice(7)}`;
-}
-
-/**
- * Formulário de contato: aplica a máscara de telefone em tempo real,
- * valida nome/telefone/tipo de atendimento no submit (com aria-invalid,
- * mensagem de erro por campo e foco no primeiro campo inválido) e, se
- * tudo estiver certo, monta a mensagem e abre o WhatsApp em nova aba
- * (não há backend — o próprio WhatsApp é o canal de envio).
- */
-function inicializarFormularioContato() {
-  const form = document.getElementById('formulario-contato');
-  if (!form) return;
-
-  const campoNome = document.getElementById('campo-nome');
-  const campoTelefone = document.getElementById('campo-telefone');
-  const campoTipo = document.getElementById('campo-tipo');
-  const campoMensagem = document.getElementById('campo-mensagem');
-  const feedback = document.getElementById('contato-feedback');
-
-  const erroNome = document.getElementById('erro-nome');
-  const erroTelefone = document.getElementById('erro-telefone');
-  const erroTipo = document.getElementById('erro-tipo');
-
-  campoTelefone.addEventListener('input', () => {
-    campoTelefone.value = formatarTelefone(campoTelefone.value);
-  });
-
-  const marcarErro = (campo, elementoErro, mensagem) => {
-    campo.setAttribute('aria-invalid', 'true');
-    elementoErro.textContent = mensagem;
-  };
-
-  const limparErro = (campo, elementoErro) => {
-    campo.removeAttribute('aria-invalid');
-    elementoErro.textContent = '';
-  };
-
-  [
-    [campoNome, erroNome],
-    [campoTelefone, erroTelefone],
-    [campoTipo, erroTipo],
-  ].forEach(([campo, elementoErro]) => {
-    campo.addEventListener('input', () => limparErro(campo, elementoErro));
-    campo.addEventListener('change', () => limparErro(campo, elementoErro));
-  });
-
-  form.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-
-    const nome = campoNome.value.trim();
-    const telefoneDigitos = campoTelefone.value.replace(/\D/g, '');
-    const tipo = campoTipo.value;
-    const mensagem = campoMensagem.value.trim();
-
-    let primeiroCampoInvalido = null;
-
-    if (nome.length < 3) {
-      marcarErro(campoNome, erroNome, 'Digite seu nome completo (mínimo 3 caracteres).');
-      primeiroCampoInvalido = primeiroCampoInvalido || campoNome;
-    } else {
-      limparErro(campoNome, erroNome);
-    }
-
-    if (telefoneDigitos.length !== 10 && telefoneDigitos.length !== 11) {
-      marcarErro(campoTelefone, erroTelefone, 'Informe um telefone válido, com DDD (10 ou 11 dígitos).');
-      primeiroCampoInvalido = primeiroCampoInvalido || campoTelefone;
-    } else {
-      limparErro(campoTelefone, erroTelefone);
-    }
-
-    if (!tipo) {
-      marcarErro(campoTipo, erroTipo, 'Selecione o tipo de atendimento.');
-      primeiroCampoInvalido = primeiroCampoInvalido || campoTipo;
-    } else {
-      limparErro(campoTipo, erroTipo);
-    }
-
-    if (primeiroCampoInvalido) {
-      feedback.textContent = '';
-      feedback.removeAttribute('data-tipo');
-      primeiroCampoInvalido.focus();
-      return;
-    }
-
-    const telefoneFormatado = campoTelefone.value;
-    let mensagemWhatsApp = `Olá, Yasmim! Meu nome é ${nome}. Gostaria de agendar um atendimento ${tipo}.`;
-    if (mensagem) mensagemWhatsApp += ` ${mensagem}`;
-    mensagemWhatsApp += ` Meu contato: ${telefoneFormatado}`;
-
-    registrarEventoGTM('envio_formulario_contato', { tipo_atendimento: tipo });
-    window.open(linkWhatsApp(mensagemWhatsApp), '_blank', 'noopener');
-
-    feedback.textContent = 'Tudo certo! Abrimos o WhatsApp para você concluir o envio.';
-    feedback.setAttribute('data-tipo', 'sucesso');
-    form.reset();
-  });
-}
-
-/**
- * Botão flutuante de WhatsApp: aparece com fade após 300px de rolagem e
- * some temporariamente quando o botão de enviar do formulário de contato
- * está visível, para nunca sobrepor a área de toque dele no mobile.
+ * Botão flutuante de WhatsApp: aparece com fade após 300px de rolagem.
  */
 function inicializarBotaoFlutuante() {
   const botao = document.getElementById('botao-whatsapp-flutuante');
@@ -620,19 +506,6 @@ function inicializarBotaoFlutuante() {
 
   atualizarVisibilidade();
   window.addEventListener('scroll', atualizarVisibilidade, { passive: true });
-
-  const botaoFormulario = document.querySelector('.contato__botao');
-  if (botaoFormulario && 'IntersectionObserver' in window) {
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          botao.classList.toggle('botao-flutuante--oculto', entrada.isIntersecting);
-        });
-      },
-      { rootMargin: '0px 0px -56px 0px' }
-    );
-    observador.observe(botaoFormulario);
-  }
 }
 
 /**
@@ -653,7 +526,6 @@ document.addEventListener('DOMContentLoaded', () => {
   inicializarAnimacaoEntrada();
   inicializarCarrosselConsultorio();
   inicializarFAQ();
-  inicializarFormularioContato();
   inicializarBotaoFlutuante();
   inicializarAnoRodape();
 });

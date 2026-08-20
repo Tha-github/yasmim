@@ -303,7 +303,7 @@ main:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: var(--esp-16);
-  min-height: 80px;
+  min-height: 72px;
 }
 
 /* Logo / identificação */
@@ -315,24 +315,24 @@ main:focus-visible {
   flex-shrink: 0;
 }
 
-/* Altura 52px no mobile, 62px no desktop — largura automática, o logo é
-   uma composição quadrada (brasão + nome empilhados), não uma faixa
-   horizontal. */
+/* Logo reduzido nesta rodada (antes: 52px mobile / 62px desktop) — largura
+   automática, o logo é uma composição quadrada (brasão + nome empilhados),
+   não uma faixa horizontal. */
 .cabecalho__logo-moldura {
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 52px;
+  height: 42px;
   /* Só um piso: se a imagem falhar e sumir (display:none), o placeholder
      ainda tem onde aparecer. Com a imagem carregando normalmente, o
      conteúdo é quem define a largura real (inline-flex). */
-  min-width: 52px;
+  min-width: 42px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
   .cabecalho__logo-moldura {
-    height: 62px;
-    min-width: 62px;
+    height: 48px;
+    min-width: 48px;
   }
 }
 
@@ -440,6 +440,22 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   flex-shrink: 0;
 }
 
+/* Com o menu horizontal visível (>=1200px), tudo fica colado à borda
+   esquerda real da janela — não só reagrupado dentro do container
+   centralizado (que em telas largas ainda deixava uma folga grande antes
+   do logo), mas sem o limite de largura/centralização do .container */
+@media (min-width: 1200px) {
+  .cabecalho__conteudo {
+    max-width: none;
+    margin-inline: 0;
+    /* Pequena folga a mais que o padding padrão de 24px do .container,
+       pra não ficar colado bem na borda da janela */
+    padding-left: var(--esp-48);
+    justify-content: flex-start;
+    gap: var(--esp-64);
+  }
+}
+
 /* Botão hambúrguer (mobile) */
 
 .cabecalho__hamburguer {
@@ -495,9 +511,13 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   pointer-events: auto;
 }
 
-/* Menu em drawer lateral abaixo de 900px */
+/* Menu em drawer lateral abaixo de 1200px — breakpoint elevado nesta
+   rodada (era 900px): com a 7ª âncora do menu ("Como funciona") e o botão
+   "Agende sua sessão", a barra horizontal não cabia com folga entre 900 e
+   1199px (botão chegava a estourar a largura do header). Agora o menu só
+   vira barra horizontal quando há espaço confortável de verdade. */
 
-@media (max-width: 899px) {
+@media (max-width: 1199px) {
   .cabecalho__hamburguer {
     display: flex;
   }
@@ -639,9 +659,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     order: initial;
     grid-column: 1;
     grid-row: 2;
-    /* Puxa para cima além do row-gap: compensa o respiro que o
-       line-height do título deixa abaixo da última linha */
-    margin-top: -1.5rem;
+    margin-top: 0;
   }
 
   .hero__imagem {
@@ -660,10 +678,25 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 .hero__titulo {
   font-size: 1.375rem; /* 22px mobile — cabe nas duas linhas do <br> (375px+) */
-  line-height: 1.2;
+  line-height: 1.05;
   /* Sem margin-bottom: o espaço até o próximo bloco já vem do gap do grid
      (.hero__conteudo) — somar os dois abria um vão grande demais */
   margin-bottom: 0;
+}
+
+/* Item 1.1: a 2ª linha do H1 só fica centralizada no mobile — ali ela
+   herda o text-align:center do .hero__titulo (regra no media query
+   abaixo). No desktop não há override aqui, então herda o alinhamento
+   padrão do título (à esquerda). */
+.hero__titulo-linha2 {
+  display: block;
+}
+
+/* Item 1.2: negrito só em "cuidar de si", mantendo o itálico e a cor de
+   --destaque já existentes no <em> — peso 700 carregado via Google Fonts
+   (ital,wght@1,700) especialmente para este trecho */
+.hero__titulo .destaque strong {
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -672,24 +705,74 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 }
 
-.hero__subtitulo {
-  font-size: var(--fs-18);
-  color: var(--marrom-suave);
-  margin-bottom: var(--esp-16);
-}
-
+/* Item 1.5: ~15% menor que os 16px originais (var(--fs-16)). Uma redução
+   literal de 15% chegaria a 13,6px, abaixo do piso de 15px definido para o
+   mobile — por isso o valor final fica no próprio piso (15px, 0.9375rem),
+   a maior redução possível sem violar o mínimo pedido. */
 .hero__apoio {
   font-family: var(--fonte-corpo);
-  font-size: var(--fs-16);
+  font-size: 0.9375rem; /* 15px — piso mínimo definido no item 1.5 */
   font-weight: 500;
   color: var(--marrom-suave);
   margin-bottom: var(--esp-32);
+}
+
+@media (min-width: 900px) {
+  .hero__apoio {
+    /* Largura ajustada para o texto quebrar em ~3 linhas no desktop,
+       com balance distribuindo o texto de forma mais uniforme entre elas */
+    max-width: 48ch;
+    text-wrap: balance;
+  }
 }
 
 .hero__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--esp-16);
+}
+
+/* Item 1.7: informações rápidas abaixo dos CTAs, com ícones Lucide inline
+   no mesmo padrão visual dos outros ícones de linha do site (ex.: .contato__icone) */
+.hero__info-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-8);
+  margin-top: var(--esp-24);
+}
+
+.hero__info-lista li {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-8);
+  font-family: var(--fonte-corpo);
+  font-size: var(--fs-14);
+  color: var(--marrom-suave);
+}
+
+.hero__info-icone {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--terracota);
+}
+
+.hero__info-icone svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Item 1.8: nome e CRP da profissional, discretos, logo abaixo das
+   informações rápidas — primeira dobra é onde a exigência do CFP de
+   exibir nome completo + CRP fica mais visível sem competir com o CTA
+   principal, que continua sendo o elemento de maior destaque do hero. */
+.hero__assinatura {
+  margin-top: var(--esp-16);
+  margin-bottom: 0;
+  font-family: var(--fonte-corpo);
+  font-size: var(--fs-14);
+  color: var(--marrom-suave);
 }
 
 .hero__imagem {
@@ -720,10 +803,15 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   box-shadow: var(--sombra-suave);
 }
 
+/* Item 1.3: leve zoom no conteúdo da foto (~12%), mantendo moldura e
+   formato do container intactos — object-position ajustado para o
+   enquadramento continuar centrado no rosto após o zoom */
 .hero__foto {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 22%;
+  transform: scale(1.12);
 }
 
 @media (max-width: 767px) {
@@ -732,10 +820,14 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     text-align: center;
   }
 
-  .hero__subtitulo,
   .hero__apoio {
     max-width: 34ch;
     margin-inline: auto;
+  }
+
+  /* Removido só no mobile — botão secundário continua visível no desktop */
+  .hero__ctas .btn--outline {
+    display: none;
   }
 
   .hero__imagem {
@@ -756,6 +848,25 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     max-width: 320px;
     min-height: 48px;
   }
+
+  .hero__info-lista {
+    align-items: center;
+  }
+
+  .hero__info-lista li {
+    justify-content: center;
+  }
+
+  /* Quebra em duas linhas só no mobile: "Yasmim dos Santos Pinho" e,
+     embaixo, "Psicóloga Clínica · CRP 06/162942" — some o separador do
+     meio (ele reaparece no desktop, onde tudo fica numa linha só) */
+  .hero__assinatura-separador {
+    display: none;
+  }
+
+  .hero__assinatura-linha2 {
+    display: block;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -763,9 +874,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    -------------------------------------------------------------------------- */
 
 .faixa-credenciais {
-  /* Fundo claro (não mais um bloco escuro cortando a página): integra a
-     faixa ao restante do site, com bordas finas marcando os limites */
-  background-color: var(--areia);
+  background-color: var(--marrom);
   border-top: 1px solid var(--mostarda-escuro);
   border-bottom: 1px solid var(--mostarda-escuro);
   padding-block: var(--esp-32);
@@ -789,8 +898,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   display: flex;
   align-items: center;
   gap: var(--esp-8);
-  /* --marrom-escuro sobre --areia: 10,52:1 (AA bem folgado) */
-  color: var(--marrom-escuro);
+  /* --areia sobre --marrom: ~5,1:1 (AA) */
+  color: var(--areia);
   font-family: var(--fonte-corpo);
   font-weight: 500;
   font-size: var(--fs-14);
@@ -802,7 +911,6 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   text-align: center;
 }
 
-/* Ícone de check em SVG, na cor --terracota: 4,50:1 sobre --areia */
 .faixa-credenciais__check {
   display: inline-flex;
   align-items: center;
@@ -810,7 +918,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  color: var(--terracota);
+  color: var(--areia);
 }
 
 .faixa-credenciais__check svg {
@@ -956,31 +1064,56 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin: 0;
 }
 
+/* Item 2.3: no mobile, lista vertical em coluna única — ícone à esquerda,
+   texto à direita, com divisor sutil entre os itens (sem o "cartão" do
+   desktop). No desktop (min-width:1024px, regra já existente acima) o
+   grid de 3 colunas x 2 linhas dos 6 cards permanece intacto. */
 @media (max-width: 767px) {
+  .identificacao__grid {
+    gap: 0;
+  }
+
   .identificacao__card {
-    text-align: center;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(201, 168, 92, 0.35); /* --mostarda-escuro, opacidade reduzida */
+    border-radius: 0;
+    padding: var(--esp-16) 0;
+    gap: var(--esp-16);
+  }
+
+  .identificacao__card:first-child {
+    border-top: 1px solid rgba(201, 168, 92, 0.35);
+  }
+
+  .identificacao__card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .identificacao__card .icone {
+    margin-bottom: 0;
+    margin-inline: 0;
   }
 }
 
-/* Atraso escalonado entre os 8 cards ao entrarem na tela */
+/* Atraso escalonado entre os 6 cards ao entrarem na tela */
 .identificacao__grid .reveal:nth-child(1) { transition-delay: 0s; }
 .identificacao__grid .reveal:nth-child(2) { transition-delay: 0.08s; }
 .identificacao__grid .reveal:nth-child(3) { transition-delay: 0.16s; }
 .identificacao__grid .reveal:nth-child(4) { transition-delay: 0.24s; }
 .identificacao__grid .reveal:nth-child(5) { transition-delay: 0.32s; }
 .identificacao__grid .reveal:nth-child(6) { transition-delay: 0.4s; }
-.identificacao__grid .reveal:nth-child(7) { transition-delay: 0.48s; }
-.identificacao__grid .reveal:nth-child(8) { transition-delay: 0.56s; }
 
+/* Item 2.4: frase de transição em duas linhas — destaque maior (título) e
+   apoio menor (corpo), usando tokens já existentes na escala (--fs-26/--fs-16) */
 .identificacao__fechamento {
   max-width: 640px;
   margin-inline: auto;
   margin-top: var(--esp-48);
-  font-family: var(--fonte-titulo);
-  font-style: italic;
-  font-weight: 500;
-  font-size: var(--fs-20);
-  color: var(--marrom);
   text-align: center;
 }
 
@@ -988,6 +1121,23 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   .identificacao__fechamento {
     margin-top: var(--esp-64);
   }
+}
+
+.identificacao__fechamento-destaque {
+  margin: 0 0 var(--esp-8);
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--fs-26);
+  color: var(--marrom);
+}
+
+.identificacao__fechamento-apoio {
+  margin: 0 auto;
+  max-width: 480px;
+  font-family: var(--fonte-corpo);
+  font-size: var(--fs-16);
+  color: var(--marrom-suave);
 }
 
 /* --------------------------------------------------------------------------
@@ -1080,17 +1230,21 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   color: var(--marrom-suave);
 }
 
+/* Item 5.1: fonte reduzida em ~20% (única alteração autorizada nesta
+   seção). 20px * 0.8 = 16px, coincide com o token --fs-16 já existente. */
 .sobre__assinatura {
   margin-top: var(--esp-32);
   margin-bottom: 0;
   font-family: var(--fonte-titulo);
   font-style: italic;
   font-weight: 500;
-  font-size: var(--fs-20);
+  font-size: var(--fs-16);
   line-height: 1.2;
   color: var(--marrom);
 }
 
+/* 14px * 0.8 = 11,2px, abaixo do piso de 13px pedido — por isso o valor
+   final fica no piso (13px, 0.8125rem) */
 .sobre__assinatura-crp {
   /* Negativo: o line-height de 1.65 herdado do <p> base deixa bastante
      espaço abaixo da linha do nome mesmo com line-height:1.2 nela — puxa
@@ -1099,18 +1253,46 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin-bottom: 0;
   line-height: 1.2;
   font-family: var(--fonte-corpo);
-  font-size: var(--fs-14);
+  font-size: 0.8125rem; /* 13px — piso mínimo definido no item 5.1 */
   color: var(--marrom-suave);
 }
 
 @media (max-width: 767px) {
   .sobre__texto {
+    display: flex;
+    flex-direction: column;
     text-align: center;
   }
 
   .sobre__texto > p {
     max-width: 34ch;
     margin-inline: auto;
+  }
+
+  /* Reordena só no mobile: nome/CRP passam a vir depois do texto e antes
+     da linha divisória (o border-top do .sobre__mini-blocos). No desktop
+     a ordem no HTML continua valendo (mini-blocos antes da assinatura). */
+  .sobre__texto > .olho {
+    order: 1;
+  }
+
+  .sobre__texto > .titulo-secao {
+    order: 2;
+  }
+
+  /* As 3 primeiras tags <p> do texto (os parágrafos de corpo) — não
+     inclui .sobre__assinatura/.sobre__assinatura-crp, que são as próximas */
+  .sobre__texto > p:nth-of-type(-n+3) {
+    order: 3;
+  }
+
+  .sobre__assinatura,
+  .sobre__assinatura-crp {
+    order: 4;
+  }
+
+  .sobre__mini-blocos {
+    order: 5;
   }
 }
 
@@ -1131,22 +1313,20 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 }
 
+/* Item 3.4: 2 colunas x 3 linhas no mobile, 3 colunas x 2 linhas no
+   desktop (>=768px) — grid fixo para os 6 temas, cards de mesma altura
+   (align-items: stretch), objetivo declarado pela cliente de deixar o
+   site menos extenso. */
 .ajuda__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   align-items: stretch;
   gap: var(--esp-16);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .ajuda__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .ajuda__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--esp-24);
   }
 }
@@ -1154,7 +1334,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 .ajuda__card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   /* Sem gap: o ícone já tem margin-bottom de 16px (.icone) e o título
      define os 8px até a descrição — gap somaria espaço em dobro */
   /* Sem isso, um item de grid não encolhe além do min-content do seu
@@ -1164,8 +1345,14 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   overflow-wrap: break-word;
   background-color: var(--bege-rosado);
   border-radius: var(--raio-borda);
-  padding: var(--esp-32) var(--esp-24);
+  padding: var(--esp-24);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .ajuda__card {
+    padding: var(--esp-32) var(--esp-24);
+  }
 }
 
 .ajuda__card:hover {
@@ -1185,23 +1372,110 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin: 0;
 }
 
-@media (max-width: 767px) {
-  .ajuda__card {
-    align-items: center;
-    text-align: center;
-    padding: var(--esp-24);
-  }
-}
-
-/* Atraso escalonado entre os 8 chips ao entrarem na tela */
+/* Atraso escalonado entre os 6 cards ao entrarem na tela */
 .ajuda__grid .reveal:nth-child(1) { transition-delay: 0s; }
 .ajuda__grid .reveal:nth-child(2) { transition-delay: 0.06s; }
 .ajuda__grid .reveal:nth-child(3) { transition-delay: 0.12s; }
 .ajuda__grid .reveal:nth-child(4) { transition-delay: 0.18s; }
 .ajuda__grid .reveal:nth-child(5) { transition-delay: 0.24s; }
 .ajuda__grid .reveal:nth-child(6) { transition-delay: 0.3s; }
-.ajuda__grid .reveal:nth-child(7) { transition-delay: 0.36s; }
-.ajuda__grid .reveal:nth-child(8) { transition-delay: 0.42s; }
+
+/* --------------------------------------------------------------------------
+   Como funciona a terapia (linha do tempo) — nova seção, rodada de ajustes
+   -------------------------------------------------------------------------- */
+
+.processo__cabecalho {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--esp-48);
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .processo__cabecalho {
+    margin-bottom: var(--esp-64);
+  }
+}
+
+.processo__linha-do-tempo {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+/* Item 4.5: número e ícone à esquerda, texto à direita — mesma estrutura
+   em coluna única no mobile e no desktop */
+.processo__etapa {
+  display: flex;
+  gap: var(--esp-24);
+}
+
+.processo__linha-do-tempo .reveal:nth-child(1) { transition-delay: 0s; }
+.processo__linha-do-tempo .reveal:nth-child(2) { transition-delay: 0.12s; }
+.processo__linha-do-tempo .reveal:nth-child(3) { transition-delay: 0.24s; }
+.processo__linha-do-tempo .reveal:nth-child(4) { transition-delay: 0.36s; }
+
+.processo__marcador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.processo__circulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--terracota);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: var(--fs-18);
+}
+
+/* Linha vertical que conecta os círculos — some depois do último */
+.processo__linha {
+  flex: 1;
+  width: 2px;
+  min-height: var(--esp-24);
+  margin-block: var(--esp-8);
+  background-color: var(--mostarda-escuro);
+}
+
+.processo__etapa:last-child .processo__linha {
+  display: none;
+}
+
+.processo__conteudo {
+  padding-bottom: var(--esp-48);
+}
+
+.processo__etapa:last-child .processo__conteudo {
+  padding-bottom: 0;
+}
+
+.processo__titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-8);
+  margin: 0 0 var(--esp-8);
+}
+
+.processo__titulo svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--terracota);
+}
+
+.processo__conteudo p {
+  margin: 0;
+}
 
 /* --------------------------------------------------------------------------
    Formas de atendimento
@@ -1291,38 +1565,11 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   margin-top: auto;
 }
 
+/* Item 6.2: texto sempre alinhado à esquerda dentro dos cards (mobile e
+   desktop) — antes ficava centralizado no mobile, corrigido nesta rodada */
 @media (max-width: 767px) {
   .atendimento__card {
-    align-items: center;
-    text-align: center;
     padding: var(--esp-24);
-  }
-
-  .atendimento__icone {
-    margin-inline: auto;
-  }
-
-  .atendimento__lista {
-    align-items: center;
-  }
-
-  /* Ponto como parte do texto (inline), não mais posicionado à margem —
-     assim ele fica sempre colado à primeira palavra e o parágrafo
-     continua centralizado, inclusive se quebrar em 2 linhas */
-  .atendimento__lista li {
-    padding-left: 0;
-  }
-
-  .atendimento__lista li::before {
-    content: '';
-    position: static;
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    margin-right: var(--esp-8);
-    border-radius: 50%;
-    background-color: var(--terracota);
-    vertical-align: middle;
   }
 
   .atendimento__botao {
@@ -1330,9 +1577,6 @@ img.imagem-indisponivel ~ .placeholder-imagem {
        "fileira" do grid para o margin-top:auto distribuir — por isso um
        valor fixo aqui garante os 24px pedidos entre lista e botão */
     margin-top: var(--esp-24);
-    padding-inline: var(--esp-16);
-    font-size: clamp(0.85rem, 0.75rem + 0.5vw, 0.95rem);
-    white-space: nowrap;
   }
 }
 
@@ -1584,6 +1828,10 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  /* Sem z-index, a seta "anterior" (que vem antes da foto no HTML e, no
+     mobile, tem seu box sobrepondo a borda da foto) ficava pintada por
+     baixo de .lightbox__foto-wrapper — coberta e sem receber clique. */
+  z-index: 2;
   width: 44px;
   height: 44px;
   display: flex;
@@ -1846,6 +2094,19 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   color: var(--branco);
 }
 
+/* Quebra fixa só no desktop: "Mudanças importantes" numa linha e
+   "começam com uma decisão." na linha debaixo. No mobile a quebra fica
+   a cargo do text-wrap:balance (regra no media query abaixo). */
+.decisao__quebra-desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .decisao__quebra-desktop {
+    display: initial;
+  }
+}
+
 /* --terracota (usado no resto do site) ficaria invisível em cima do
    próprio fundo --terracota desta faixa. --mostarda no lugar: 3,17:1,
    suficiente para o texto grande desta frase (>=24px), mas abaixo do
@@ -1881,6 +2142,9 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    Contato (formulário + mapa)
    -------------------------------------------------------------------------- */
 
+/* Item 10.2: duas colunas no desktop (texto+WhatsApp / mapa), empilhado
+   no mobile. A ordem no HTML já resolve o item 10.3 (texto+botão antes do
+   mapa no mobile), sem precisar de order/grid-row para reposicionar nada. */
 .contato__conteudo {
   display: grid;
   grid-template-columns: 1fr;
@@ -1889,59 +2153,14 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 @media (min-width: 900px) {
   .contato__conteudo {
-    grid-template-columns: 0.9fr 1.1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: var(--esp-64);
     align-items: start;
-  }
-
-  /* O mapa é irmão do formulário no HTML (fica empilhado depois dele no
-     mobile), mas no desktop volta a aparecer abaixo do texto de contato,
-     na mesma coluna — reposicionado via grid, sem duplicar marcação */
-  .contato__info {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .contato__mapa {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .contato__formulario-wrapper {
-    grid-column: 2;
-    grid-row: 1 / 3;
   }
 }
 
 .contato__conteudo .reveal:nth-child(1) { transition-delay: 0s; }
 .contato__conteudo .reveal:nth-child(2) { transition-delay: 0.12s; }
-
-.contato__canais {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-16);
-  margin-top: var(--esp-24);
-}
-
-.contato__canais li {
-  display: flex;
-  align-items: center;
-  gap: var(--esp-16);
-}
-
-.contato__icone {
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  color: var(--terracota);
-}
-
-.contato__icone svg {
-  width: 100%;
-  height: 100%;
-}
 
 @media (max-width: 767px) {
   .contato__info {
@@ -1952,133 +2171,55 @@ img.imagem-indisponivel ~ .placeholder-imagem {
     max-width: 34ch;
     margin-inline: auto;
   }
+}
 
-  /* Oculta só visualmente (continua ativa no desktop). O WhatsApp
-     continua acessível pelo botão flutuante e pelo próprio formulário. */
-  .contato__canais {
-    display: none;
+/* Item 10.2 (coluna esquerda): botão de WhatsApp com ícone */
+.contato__whatsapp-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-8);
+  margin-top: var(--esp-24);
+}
+
+.contato__whatsapp-icone {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.contato__whatsapp-icone svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .contato__whatsapp-botao {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
   }
 }
 
-.contato__formulario-wrapper {
-  background-color: var(--branco);
-  border-radius: 20px;
-  padding: var(--esp-32);
-  box-shadow: var(--sombra-suave);
-}
-
-.contato__formulario {
+/* Item 10.2 (coluna direita): mapa incorporado + link para o Google Maps */
+.contato__mapa-bloco {
   display: flex;
   flex-direction: column;
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-8);
-  margin-bottom: var(--esp-16);
-}
-
-.campo label {
-  font-family: var(--fonte-corpo);
-  font-weight: 500;
-  font-size: var(--fs-14);
-  color: var(--marrom-escuro);
-}
-
-.campo__opcional {
-  font-weight: 400;
-  color: var(--marrom-suave);
-}
-
-.campo input,
-.campo select,
-.campo textarea {
-  min-height: 44px;
-  padding: var(--esp-8) var(--esp-16);
-  border: 1px solid rgba(201, 168, 92, 0.5); /* --mostarda-escuro, opacidade reduzida */
-  border-radius: 10px;
-  background-color: var(--branco);
-  font-family: var(--fonte-corpo);
-  font-size: var(--fs-16);
-  color: var(--marrom-escuro);
-}
-
-.campo textarea {
-  min-height: 110px;
-  padding-block: var(--esp-16);
-  resize: vertical;
-}
-
-.campo input:focus-visible,
-.campo select:focus-visible,
-.campo textarea:focus-visible {
-  outline: 2px solid var(--terracota);
-  outline-offset: 2px;
-  border-color: var(--terracota);
-}
-
-.campo input[aria-invalid="true"],
-.campo select[aria-invalid="true"] {
-  border-color: var(--erro);
-}
-
-.campo__erro {
-  font-size: var(--fs-14);
-  color: var(--erro);
-  min-height: 1.2em;
-}
-
-.campo__erro:empty {
-  min-height: 0;
-}
-
-.contato__feedback {
-  margin: 0 0 var(--esp-16);
-  font-size: var(--fs-14);
-  font-weight: 500;
-  min-height: 1.2em;
-}
-
-.contato__feedback:empty {
-  margin-bottom: 0;
-  min-height: 0;
-}
-
-.contato__feedback[data-tipo="sucesso"] {
-  color: var(--marrom);
-}
-
-.contato__feedback[data-tipo="erro"] {
-  color: var(--erro);
-}
-
-.contato__botao {
-  width: 100%;
-  margin-top: var(--esp-8);
-}
-
-.contato__aviso {
-  margin-top: var(--esp-16);
-  margin-bottom: 0;
-  font-size: var(--fs-14);
-  color: var(--marrom-suave);
+@media (max-width: 767px) {
+  .contato__mapa-bloco {
+    text-align: center;
+  }
 }
 
 .contato__mapa {
-  /* Espaçamento em relação ao item anterior já vem do gap do grid
-     .contato__conteudo (mobile: empilhado; desktop: reposicionado) */
   width: 100%;
-  height: 200px;
+  height: clamp(220px, 40vw, 260px);
+  margin-top: var(--esp-8);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--sombra-suave);
-}
-
-@media (min-width: 1024px) {
-  .contato__mapa {
-    height: clamp(220px, 16vw, 280px);
-  }
 }
 
 .contato__mapa-iframe {
@@ -2086,6 +2227,14 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.contato__mapa-link {
+  display: inline-block;
+  margin-top: var(--esp-16);
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+  font-size: var(--fs-14);
 }
 
 /* --------------------------------------------------------------------------
@@ -2118,14 +2267,6 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-}
-
-/* Some temporariamente quando o botão de enviar do formulário de contato
-   está visível, para nunca sobrepor a área de toque dele no mobile */
-.botao-flutuante.botao-flutuante--oculto {
-  opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
 }
 
 .botao-flutuante:hover,
@@ -2188,7 +2329,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   position: relative;
   display: inline-block;
   width: 100%;
-  max-width: 100px;
+  max-width: 160px;
   min-height: 28px;
 }
 
@@ -2234,8 +2375,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
 
 .rodape__barra-conteudo a {
   color: var(--bege-rosado);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 
 .rodape__barra-conteudo a:hover,
