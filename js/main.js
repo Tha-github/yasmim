@@ -3,8 +3,7 @@
 // ==========================================================================
 
 // Número de WhatsApp para contato (formato: código do país + DDD + número)
-// TROCAR AQUI: substituir pelo número real fornecido pela cliente
-const WHATSAPP_NUMBER = '5511999999999';
+const WHATSAPP_NUMBER = '5511939109823';
 
 /**
  * Monta a URL do WhatsApp (wa.me) com uma mensagem pré-codificada.

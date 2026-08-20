@@ -46,16 +46,14 @@ achar cada ponto exato.
 
 ### 1. Número do WhatsApp
 
-Arquivo: [js/main.js](js/main.js), linha 7.
+Já preenchido em [js/main.js](js/main.js) com o número real da cliente:
 
 ```js
-const WHATSAPP_NUMBER = '5511999999999';
+const WHATSAPP_NUMBER = '5511939109823'; // (11) 93910-9823
 ```
 
-Trocar pelo número real, **só dígitos**, no formato
-`55` + DDD + número (ex.: `5511987654321`). Esse número alimenta todos
-os botões de WhatsApp do site automaticamente — não é preciso mexer em
-nenhum outro lugar.
+Esse número alimenta todos os botões de WhatsApp do site
+automaticamente — não é preciso mexer em nenhum outro lugar.
 
 ### 2. Logotipo
 
@@ -113,9 +111,14 @@ como texto — só o mapa incorporado e o link para o Google Maps.
 
 ### 6. Mapa (Google Maps)
 
-O `<iframe>` da seção "Contato" usa um endereço de texto genérico
-("Consultório Yasmim dos Santos Pinho, Santo André, SP") porque ainda
-não temos o endereço completo. Assim que tiver:
+O `<iframe>` da seção "Contato" já usa a localização real enviada pela
+cliente, via coordenadas (`-23.658510, -46.539413`), resolvidas a
+partir do link curto `https://goo.gl/maps/kYNDVLfMRNyttv8e8`. Ainda
+falta o endereço em texto (rua, número, bairro, CEP) para o campo
+`streetAddress` do JSON-LD, marcado com `TROCAR AQUI`.
+
+Se quiser trocar o embed do mapa pelo código oficial do Google (em vez
+da URL por coordenadas):
 
 1. Abrir [Google Maps](https://maps.google.com), buscar o endereço
    completo do consultório.
@@ -124,10 +127,6 @@ não temos o endereço completo. Assim que tiver:
 3. Substituir o `<iframe class="contato__mapa-iframe" ...>` inteiro
    pelo trecho copiado (mantendo a classe `contato__mapa-iframe` para
    não perder o estilo).
-
-O link curto enviado pela cliente
-(`https://maps.app.goo.gl/Ywut3vT8o9KjeAsJ8`) está anotado em
-comentário ao lado do iframe, para conferência.
 
 ### 7. Domínio / URL final
 

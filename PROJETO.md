@@ -220,10 +220,12 @@ layout ou paleta — a identidade da Yasmim é própria (creme, mostarda, terrac
 ## 13. Integrações
 
 - Instagram: https://www.instagram.com/psi.yasmimpinho
-- Google Maps: https://maps.app.goo.gl/Ywut3vT8o9KjeAsJ8
-- WhatsApp: número a definir — constante `WHATSAPP_NUMBER` em `js/main.js`
-- Formulário: sem backend. Monta a mensagem e abre
-  `https://wa.me/55DDDNUMERO?text=...`
+- Google Maps: https://goo.gl/maps/kYNDVLfMRNyttv8e8 (coordenadas
+  -23.658510, -46.539413)
+- WhatsApp: (11) 93910-9823 — constante `WHATSAPP_NUMBER` em `js/main.js`
+  (`5511939109823`)
+- Contato: sem formulário, sem backend. Botões abrem
+  `https://wa.me/5511939109823?text=...` diretamente
 - Google Tag: inserir no `<head>` com ID placeholder e comentário TROCAR AQUI
 
 ## 14. Conformidade profissional (CFP)
@@ -242,11 +244,13 @@ Psicologia. Aplicar em todo o conteúdo:
 
 ## 15. Pendências com a cliente
 
-- [ ] Número do WhatsApp com DDD
+- [x] Número do WhatsApp com DDD — (11) 93910-9823
 - [ ] Logotipo (SVG ou PNG com fundo transparente)
 - [ ] Fotos profissionais dela
 - [ ] Fotos do consultório (sala de espera e sala de atendimento)
 - [ ] Confirmar se haverá depoimentos e se está ciente das regras do CFP
 - [ ] ID da Google Tag (GTM-XXXXXXX ou G-XXXXXXXXXX)
-- [ ] Endereço completo do consultório para o rodapé e o JSON-LD
+- [ ] Endereço completo do consultório em texto, para o JSON-LD (a
+      localização no mapa já está confirmada — coordenadas -23.658510,
+      -46.539413 / https://goo.gl/maps/kYNDVLfMRNyttv8e8)
 - [ ] Confirmar se aparece o e-mail profissional no site

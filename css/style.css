@@ -875,7 +875,8 @@ img.imagem-indisponivel ~ .placeholder-imagem {
    -------------------------------------------------------------------------- */
 
 .faixa-credenciais {
-  background-color: var(--marrom);
+  /* Mesmo --terracota do rodapé */
+  background-color: var(--terracota);
   border-top: 1px solid var(--mostarda-escuro);
   border-bottom: 1px solid var(--mostarda-escuro);
   padding-block: var(--esp-32);
