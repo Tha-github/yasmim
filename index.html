@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- ==================================================================
-       GOOGLE TAG (GOOGLE TAG MANAGER) — TROCAR AQUI
-       ID placeholder "GTM-XXXXXXX". Trocar nos DOIS lugares abaixo (aqui
-       no <head> e no <noscript> logo após a abertura do <body>) pelo ID
-       real da cliente antes de publicar o site.
-
-       ONDE A CLIENTE ENCONTRA O ID DELA:
-       1. Acessar https://tagmanager.google.com e entrar com a conta
-          Google que vai administrar o site.
-       2. Criar uma conta/contêiner do tipo "Web" (ou pedir para a agência
-          criar e compartilhar o acesso com o e-mail da cliente).
-       3. O ID aparece no canto superior direito do painel, no formato
-          "GTM-XXXXXXX" — é só copiar e colar nos dois lugares indicados.
-       4. Dentro do GTM, ela pode configurar as tags do Google Analytics 4
-          e do Meta Ads (Facebook Pixel) sem precisar mexer no código do
-          site de novo.
-
-       EVENTOS JÁ DISPARADOS PELO SITE (ver js/main.js):
-       - "clique_whatsapp": toda vez que alguém clica em um botão de
-         WhatsApp (com o parâmetro whatsapp_origem = mensagem do botão).
-       Basta criar um "Acionador" no GTM baseado nesse nome de evento
-       para contar agendamentos no Google Analytics ou nos Ads.
-       ================================================================== -->
-  <!-- Google Tag Manager -->
+ <!-- Event snippet for cliques no whatsapp conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11198622777/kHmaCNTvxeAcELnY9dsp',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
