@@ -2147,6 +2147,43 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   }
 }
 
+/* Lista de canais (WhatsApp, Instagram, endereço) acima do botão de WhatsApp */
+.contato__canais {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-8);
+  margin-top: var(--esp-8);
+}
+
+.contato__canais li {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-8);
+  font-family: var(--fonte-corpo);
+  font-size: var(--fs-14);
+  color: var(--marrom-suave);
+}
+
+@media (max-width: 767px) {
+  .contato__canais li {
+    justify-content: center;
+  }
+}
+
+.contato__endereco-quebra {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .contato__endereco {
+    line-height: 1.4;
+  }
+
+  .contato__endereco-quebra {
+    display: block;
+  }
+}
+
 /* Item 10.2 (coluna esquerda): botão de WhatsApp com ícone */
 .contato__whatsapp-botao {
   display: inline-flex;
