@@ -2152,7 +2152,7 @@ img.imagem-indisponivel ~ .placeholder-imagem {
   display: flex;
   flex-direction: column;
   gap: var(--esp-8);
-  margin-top: var(--esp-8);
+  margin-top: var(--esp-16);
 }
 
 .contato__canais li {
