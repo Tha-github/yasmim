@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fffdf0">
+
+  <title>Site temporariamente indisponível</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fffdf0;
+      --black: #000000;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px 20px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .logo {
+      width: min(230px, 58vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 42px;
+    }
+
+    .notice {
+      border: 1.5px solid var(--black);
+      padding: 58px clamp(24px, 6vw, 64px);
+    }
+
+    h1 {
+      font-size: clamp(29px, 5vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .message {
+      max-width: 590px;
+      margin: 0 auto;
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 54px;
+      height: 1px;
+      background: var(--black);
+      margin: 34px auto;
+    }
+
+    .phone {
+      display: inline-block;
+      margin-top: 10px;
+
+      color: var(--black);
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+
+      text-decoration: none;
+    }
+
+    .phone:hover {
+      text-decoration: underline;
+    }
+
+    .whatsapp {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 28px 16px;
+      }
+
+      .logo {
+        width: min(190px, 55vw);
+        margin-bottom: 30px;
+      }
+
+      .notice {
+        padding: 42px 22px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .message {
+        line-height: 1.6;
+      }
+
+      .divider {
+        margin: 28px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- Logo -->
+    <img
+      class="logo"
+      src="logo.png"
+      alt="Top Site"
+    >
+
+    <section class="notice" aria-labelledby="titulo">
+
+      <h1 id="titulo">
+        Site temporariamente indisponível
+      </h1>
+
+      <p class="message">
+        Este site está temporariamente indisponível.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="message">
+        Para obter informações e solicitar a reativação do serviço,
+        entre em contato com nossa equipe de atendimento.
+      </p>
+
+      <a
+        class="phone"
+        href="https://wa.me/5518996742364"
+        target="_blank"
+        rel="noopener"
+        aria-label="Entrar em contato pelo WhatsApp"
+      >
+        (18) 99674-2364
+      </a>
+
+      <p class="whatsapp">
+        Atendimento disponível pelo WhatsApp.
+      </p>
+
+    </section>
+
+    <footer>
+      © 2026 — Atendimento ao cliente Top Site
+    </footer>
+
+  </main>
+
+</body>
+</html>
